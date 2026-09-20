@@ -1,5 +1,7 @@
 # ProfileSpoofer
 
+![Version](https://img.shields.io/badge/version-experimental-5865F2?style=flat-square)
+
 > [!WARNING]
 > ## 🚧 EARLY DEVELOPMENT / UNSTABLE
 > ProfileSpoofer is still under active development.
@@ -13,6 +15,10 @@
 > Discord updates may break features without warning.
 
 ProfileSpoofer is a custom Vencord userplugin for locally customizing Discord profile elements.
+
+It locally patches the profile data that compatible Discord client features read — it is not just an image overlay. That is why native UI such as Nitro tenure, profile badges and supported cosmetics can render from the selected local state.
+
+**Unlock All** also unlocks supported cosmetic choices locally in Discord's own picker. It never grants real items, Nitro, badges or permissions, and people without ProfileSpoofer still see the normal account.
 
 > This might be the best profile spoofer for Vencord.
 
@@ -83,6 +89,14 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - ProfileSpoofer Network
 - Shared profiles between ProfileSpoofer users
 - Debug tools
+
+## Coming soon
+
+- Gift badges
+- Game Variety badge
+- Game Time badge
+- Streaming badge
+- Account Age badge
 
 ## Current limitations
 
