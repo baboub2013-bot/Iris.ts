@@ -39,7 +39,19 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
 
 <img src="./assets/readme/custom-badge-tooltip.webp" alt="Custom badge tooltip" width="260">
 
-### Nitro badge evolution\n\n<img src="./assets/readme/nitro-badge-evolving.webp" alt="Nitro badge evolution popup" width="287">\n\n### Legacy username tooltip
+### Nitro tenure — local client rendering
+
+ProfileSpoofer does not only place a visual badge over the profile. It locally supplies the Nitro tenure data Discord's own client reads, so the native Nitro screens can render the selected tier, subscriber-since date and badge-evolution flow. Nothing is changed server-side and other Discord users still see the real profile.
+
+<table>
+  <tr>
+    <td align="center"><img src="./assets/readme/nitro-tenure-milestones.webp" alt="Discord Nitro tenure milestone picker showing Opal" width="420"><br><strong>Native milestone picker</strong></td>
+    <td align="center"><img src="./assets/readme/nitro-opal-overview.webp" alt="Discord Nitro overview rendering a Nitro Opal tenure card" width="420"><br><strong>Native Nitro Opal card</strong></td>
+    <td align="center"><img src="./assets/readme/nitro-badge-evolving.webp" alt="Discord Nitro badge evolution popup" width="220"><br><strong>Badge evolution flow</strong></td>
+  </tr>
+</table>
+
+### Legacy username tooltip
 
 <img src="./assets/readme/legacy-username-tooltip.webp" alt="Legacy username tooltip" width="320">
 
