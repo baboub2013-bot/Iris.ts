@@ -98,6 +98,8 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 
 ## À venir
 
+> **Note :** Toutes les idées « À venir » seront implémentées **avant** la mise à jour téléphone.
+
 - Badges cadeaux
 - Badge Game Variety
 - Badge Game Time
