@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-experimental-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
 
 > [!WARNING]
 > ## 🚧 EARLY DEVELOPMENT / UNSTABLE
@@ -13,6 +13,8 @@
 > **Do not expect production-level stability yet.**
 >
 > Discord updates may break features without warning.
+>
+> I experienced a lot of crashes while debugging this plugin. There may still be plenty of crashes or regressions left, especially after Discord updates.
 
 ProfileSpoofer is a custom Vencord userplugin for locally customizing Discord profile elements.
 
