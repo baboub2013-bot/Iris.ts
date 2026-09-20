@@ -37,7 +37,7 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
 
 <img src="./assets/readme/custom-badge-tooltip.webp" alt="Custom badge tooltip" width="260">
 
-### Legacy username tooltip
+### Nitro badge evolution\n\n<img src="./assets/readme/nitro-badge-evolving.webp" alt="Nitro badge evolution popup" width="287">\n\n### Legacy username tooltip
 
 <img src="./assets/readme/legacy-username-tooltip.webp" alt="Legacy username tooltip" width="320">
 
