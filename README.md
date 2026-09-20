@@ -14,6 +14,8 @@
 
 ProfileSpoofer is a custom Vencord userplugin for locally customizing Discord profile elements.
 
+> This might be the best profile spoofer for Vencord.
+
 It also includes **ProfileSpoofer Network**, an optional system allowing ProfileSpoofer users to share their customized profiles with other users of the plugin.
 
 Users without ProfileSpoofer continue to see the normal Discord profile.
