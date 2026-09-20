@@ -98,6 +98,8 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 
 ## Próximamente
 
+> **Nota:** Todas las ideas de « Próximamente » se implementarán **antes** de la actualización para móvil.
+
 - Insignias de regalo
 - Insignia Game Variety
 - Insignia Game Time
