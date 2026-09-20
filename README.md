@@ -99,6 +99,9 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Game Time badge
 - Streaming badge
 - Account Age badge
+- Profile tag spoofer
+- Local Staff tag spoofer
+- Android mobile port for Revenge (see [mobile/](./mobile/))
 
 ## Current limitations
 
