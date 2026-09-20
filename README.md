@@ -164,7 +164,7 @@ Expect:
 - Features changing between versions
 - Occasional Discord client crashes
 
-Bug reports are welcome.
+Bug reports are welcome. **Please include the relevant console logs whenever possible** — they make crashes and broken Discord patches much easier to track down.
 
 ## Reporting bugs
 
