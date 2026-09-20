@@ -2,6 +2,8 @@
 
 ![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
 
+**🌐 Language:** **🇬🇧 English** · [🇫🇷 Français](./README.fr.md) · [🇪🇸 Español](./README.es.md)
+
 > [!WARNING]
 > ## 🚧 EARLY DEVELOPMENT / UNSTABLE
 > ProfileSpoofer is still under active development.
