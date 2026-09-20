@@ -132,11 +132,17 @@ Custom user-provided media can be disabled by receiving users.
 
 > ProfileSpoofer currently targets custom Vencord development builds.
 
-Copy this repository into:
+Copy the **contents of** `src/` into:
 
 `Vencord/src/userplugins/ProfileSpoofer`
 
 Then build Vencord normally.
+
+## Project structure
+
+- `src/` — Vencord plugin source
+- `assets/readme/` — README previews
+- `database/migrations/` — ProfileSpoofer Network database schema
 
 ## Network database
 
@@ -144,7 +150,7 @@ ProfileSpoofer Network uses a database for authentication sessions and shared pr
 
 The initial database schema is available at:
 
-`migration/0001_init.sql`
+`database/migrations/0001_init.sql`
 
 This migration is used by the experimental ProfileSpoofer Network backend.
 
