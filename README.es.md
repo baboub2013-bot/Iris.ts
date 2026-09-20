@@ -105,6 +105,7 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Insignia Account Age
 - Spoofer de etiquetas de perfil
 - Spoofer local de etiqueta Staff
+- Spoofer local de bots / creador de perfiles de bot falsos
 - Port Android para Revenge (ver [mobile/](./mobile/))
 
 ## Limitaciones actuales
