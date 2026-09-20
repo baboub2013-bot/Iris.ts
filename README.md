@@ -18,6 +18,37 @@ It also includes **ProfileSpoofer Network**, an optional system allowing Profile
 
 Users without ProfileSpoofer continue to see the normal Discord profile.
 
+## Before / After
+
+<table>
+  <tr>
+    <td align="center"><strong>Before</strong></td>
+    <td align="center"><strong>After</strong></td>
+  </tr>
+  <tr>
+    <td><img src="./assets/readme/before.png" alt="ProfileSpoofer before" width="320"></td>
+    <td><img src="./assets/readme/after.png" alt="ProfileSpoofer after" width="320"></td>
+  </tr>
+</table>
+
+## Extra previews
+
+### Custom badge tooltip
+
+<img src="./assets/readme/custom-badge-tooltip.png" alt="Custom badge tooltip" width="260">
+
+### Legacy username tooltip
+
+<img src="./assets/readme/legacy-username-tooltip.png" alt="Legacy username tooltip" width="320">
+
+### Cosmetics panel
+
+<img src="./assets/readme/cosmetics-panel.png" alt="ProfileSpoofer cosmetics panel" width="280">
+
+### Settings panel
+
+<img src="./assets/readme/settings-panel.png" alt="ProfileSpoofer settings panel" width="600">
+
 ## Features
 
 - Custom username
@@ -38,6 +69,14 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
 - ProfileSpoofer Network
 - Shared profiles between ProfileSpoofer users
 - Debug tools
+
+## Current limitations
+
+- **Gift badges are not supported yet.** I simply haven't bothered implementing them for now.
+- Discord updates may break patches without warning.
+- Some features are still experimental.
+- ProfileSpoofer Network is still under development.
+- Custom media handling is still limited.
 
 ## ProfileSpoofer Network
 
