@@ -2,7 +2,11 @@
 
 ![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
 
-**🌐 Idioma:** [🇬🇧 English](./README.md) · [🇫🇷 Français](./README.fr.md) · **🇪🇸 Español**
+<p align="right">
+  <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
+  <a href="./README.fr.md"><img src="https://flagcdn.com/w20/fr.png" width="20" height="15" alt="Français"></a>
+  <a href="./README.es.md"><img src="https://flagcdn.com/w20/es.png" width="20" height="15" alt="Español"></a>
+</p>
 
 > [!WARNING]
 > ## 🚧 DESARROLLO TEMPRANO / INESTABLE
