@@ -107,6 +107,7 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Account Age badge
 - Profile tag spoofer
 - Local Staff tag spoofer
+- Local bot spoofer / fake bot profile maker
 - Android mobile port for Revenge (see [mobile/](./mobile/))
 
 ## Current limitations
