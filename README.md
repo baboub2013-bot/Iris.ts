@@ -26,8 +26,8 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
     <td align="center"><strong>After</strong></td>
   </tr>
   <tr>
-    <td><img src="./assets/readme/before.png" alt="ProfileSpoofer before" width="320"></td>
-    <td><img src="./assets/readme/after.png" alt="ProfileSpoofer after" width="320"></td>
+    <td><img src="./assets/readme/before.webp" alt="ProfileSpoofer before" width="320"></td>
+    <td><img src="./assets/readme/after.webp" alt="ProfileSpoofer after" width="320"></td>
   </tr>
 </table>
 
@@ -35,19 +35,19 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
 
 ### Custom badge tooltip
 
-<img src="./assets/readme/custom-badge-tooltip.png" alt="Custom badge tooltip" width="260">
+<img src="./assets/readme/custom-badge-tooltip.webp" alt="Custom badge tooltip" width="260">
 
 ### Legacy username tooltip
 
-<img src="./assets/readme/legacy-username-tooltip.png" alt="Legacy username tooltip" width="320">
+<img src="./assets/readme/legacy-username-tooltip.webp" alt="Legacy username tooltip" width="320">
 
 ### Cosmetics panel
 
-<img src="./assets/readme/cosmetics-panel.png" alt="ProfileSpoofer cosmetics panel" width="280">
+<img src="./assets/readme/cosmetics-panel.webp" alt="ProfileSpoofer cosmetics panel" width="280">
 
 ### Settings panel
 
-<img src="./assets/readme/settings-panel.png" alt="ProfileSpoofer settings panel" width="600">
+<img src="./assets/readme/settings-panel.webp" alt="ProfileSpoofer settings panel" width="600">
 
 ## Features
 
