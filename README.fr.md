@@ -105,6 +105,7 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 - Badge Account Age
 - Spoofer de tag de profil
 - Spoofer de tag Staff local
+- Spoofer de bot local / créateur de faux profils de bot
 - Port Android pour Revenge (voir [mobile/](./mobile/))
 
 ## Limitations actuelles
