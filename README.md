@@ -100,6 +100,8 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 
 ## Coming soon
 
+> **Note:** All the coming soon ideas are ideas that will be implemented **before** the phone update.
+
 - Gift badges
 - Game Variety badge
 - Game Time badge
