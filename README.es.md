@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.1-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -84,6 +84,7 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Nombre de usuario antiguo personalizado
 - Fecha de creación de cuenta personalizada
 - Insignias de perfil estilo Discord
+- Niveles de insignia Gifting Patron *(Patron, Champion, Luminary, Icon, Hero y Legend)*
 - Etiquetas de perfil *(el uso se mejorará más adelante)*
 - Antigüedad Nitro personalizada
 - Antigüedad de boost de servidor personalizada
@@ -101,7 +102,6 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 
 > **Nota:** Todas las ideas de « Próximamente » se implementarán **antes** de la actualización para móvil.
 
-- Insignias de regalo
 - Insignia Game Variety
 - Insignia Game Time
 - Insignia Streaming
@@ -111,7 +111,6 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 
 ## Limitaciones actuales
 
-- **Las insignias de regalo todavía no son compatibles.** Simplemente aún no las implementé.
 - Las actualizaciones de Discord pueden romper parches sin aviso.
 - Algunas funciones siguen siendo experimentales.
 - ProfileSpoofer Network sigue en desarrollo.
