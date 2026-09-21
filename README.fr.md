@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.1-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -84,6 +84,7 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 - Ancien pseudo personnalisé
 - Date de création du compte personnalisée
 - Badges de profil style Discord
+- Paliers de badge Gifting Patron *(Patron, Champion, Luminary, Icon, Hero et Legend)*
 - Tags de profil *(l’utilisation sera améliorée plus tard)*
 - Ancienneté Nitro personnalisée
 - Ancienneté de boost serveur personnalisée
@@ -101,7 +102,6 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 
 > **Note :** Toutes les idées « À venir » seront implémentées **avant** la mise à jour téléphone.
 
-- Badges cadeaux
 - Badge Game Variety
 - Badge Game Time
 - Badge Streaming
@@ -111,7 +111,6 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 
 ## Limitations actuelles
 
-- **Les badges cadeaux ne sont pas encore pris en charge.** Je n’ai juste pas encore pris le temps de les implémenter.
 - Les mises à jour Discord peuvent casser des patches sans prévenir.
 - Certaines fonctions sont encore expérimentales.
 - ProfileSpoofer Network est encore en développement.
