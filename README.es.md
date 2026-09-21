@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.3-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.4-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -100,6 +100,10 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Herramientas de depuración
 
 ## Todas las insignias compatibles con ProfileSpoofer
+
+<p align="center">
+  <img src="./assets/readme/supported-badges-preview.png" alt="Vista previa de perfil de ProfileSpoofer con insignias compatibles" width="600">
+</p>
 
 Todas las insignias de abajo se renderizan solo localmente. No conceden insignias reales de Discord ni ventajas de cuenta.
 

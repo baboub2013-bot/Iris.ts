@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.3-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.4-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -102,6 +102,10 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Debug tools
 
 ## All badges supported by ProfileSpoofer
+
+<p align="center">
+  <img src="./assets/readme/supported-badges-preview.png" alt="ProfileSpoofer profile preview with supported badges" width="600">
+</p>
 
 All badges below are rendered locally only. They do not grant real Discord badges or account features.
 
