@@ -86,7 +86,7 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Legacy username customization
 - Account creation date customization
 - Discord-style profile badges
-- Profile tags *(visual rendering will be improved later)*
+- Profile tags *(usage will be improved later)*
 - Nitro tenure customization
 - Server boost tenure customization
 - Avatar decorations
@@ -108,7 +108,6 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Game Time badge
 - Streaming badge
 - Account Age badge
-- Local Staff tag spoofer
 - Local bot spoofer / fake bot profile maker
 - Android mobile port for Revenge (see [mobile/](./mobile/))
 
