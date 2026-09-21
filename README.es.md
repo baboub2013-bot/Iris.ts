@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.1-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.2-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -85,6 +85,7 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Fecha de creación de cuenta personalizada
 - Insignias de perfil estilo Discord
 - Niveles de insignia Gifting Patron *(Patron, Champion, Luminary, Icon, Hero y Legend)*
+- Series de insignias experimentales — Game Variety, Game Time, Streaming y Account Age *(10 niveles cada una)*
 - Etiquetas de perfil *(el uso se mejorará más adelante)*
 - Antigüedad Nitro personalizada
 - Antigüedad de boost de servidor personalizada
@@ -102,10 +103,6 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 
 > **Nota:** Todas las ideas de « Próximamente » se implementarán **antes** de la actualización para móvil.
 
-- Insignia Game Variety
-- Insignia Game Time
-- Insignia Streaming
-- Insignia Account Age
 - Spoofer local de bots / creador de perfiles de bot falsos
 - Port Android para Revenge (ver [mobile/](./mobile/))
 
