@@ -84,7 +84,7 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 - Ancien pseudo personnalisé
 - Date de création du compte personnalisée
 - Badges de profil style Discord
-- Tags de profil *(le rendu visuel sera amélioré plus tard)*
+- Tags de profil *(l’utilisation sera améliorée plus tard)*
 - Ancienneté Nitro personnalisée
 - Ancienneté de boost serveur personnalisée
 - Décorations d’avatar
@@ -106,7 +106,6 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 - Badge Game Time
 - Badge Streaming
 - Badge Account Age
-- Spoofer de tag Staff local
 - Spoofer de bot local / créateur de faux profils de bot
 - Port Android pour Revenge (voir [mobile/](./mobile/))
 
