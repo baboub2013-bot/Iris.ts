@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.2-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.3-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -98,6 +98,16 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - ProfileSpoofer Network
 - Perfiles compartidos entre usuarios de ProfileSpoofer
 - Herramientas de depuración
+
+## Todas las insignias compatibles con ProfileSpoofer
+
+Todas las insignias de abajo se renderizan solo localmente. No conceden insignias reales de Discord ni ventajas de cuenta.
+
+- **Principales:** Discord Staff, Partner, HypeSquad Events, HypeSquad Bravery, Brilliance y Balance, Bug Hunter nivel 1 y 2, Early Supporter, Moderator Programs Alumni, Early Verified Bot Developer, Active Developer, nombre de usuario antiguo, Quest y Orbs.
+- **Antigüedad Nitro:** Nitro, Bronze, Silver, Gold, Platinum, Diamond, Emerald, Ruby y Opal.
+- **Antigüedad de boost de servidor:** 1, 2, 3, 6, 9, 12, 15, 18 y 24 meses.
+- **Gifting Patron:** Patron, Champion, Luminary, Icon, Hero y Legend.
+- **Series experimentales:** los 10 niveles de Game Variety, Game Time, Streaming y Account Age.
 
 ## Próximamente
 
