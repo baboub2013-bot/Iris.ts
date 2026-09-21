@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.1-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.2-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -85,6 +85,7 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 - Date de création du compte personnalisée
 - Badges de profil style Discord
 - Paliers de badge Gifting Patron *(Patron, Champion, Luminary, Icon, Hero et Legend)*
+- Séries de badges expérimentales — Game Variety, Game Time, Streaming et Account Age *(10 paliers chacune)*
 - Tags de profil *(l’utilisation sera améliorée plus tard)*
 - Ancienneté Nitro personnalisée
 - Ancienneté de boost serveur personnalisée
@@ -102,10 +103,6 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 
 > **Note :** Toutes les idées « À venir » seront implémentées **avant** la mise à jour téléphone.
 
-- Badge Game Variety
-- Badge Game Time
-- Badge Streaming
-- Badge Account Age
 - Spoofer de bot local / créateur de faux profils de bot
 - Port Android pour Revenge (voir [mobile/](./mobile/))
 
