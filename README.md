@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.0-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.1-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -86,6 +86,7 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - Legacy username customization
 - Account creation date customization
 - Discord-style profile badges
+- Gifting Patron badge levels *(Patron, Champion, Luminary, Icon, Hero and Legend)*
 - Profile tags *(usage will be improved later)*
 - Nitro tenure customization
 - Server boost tenure customization
@@ -103,7 +104,6 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 
 > **Note:** All the coming soon ideas are ideas that will be implemented **before** the phone update.
 
-- Gift badges
 - Game Variety badge
 - Game Time badge
 - Streaming badge
@@ -113,7 +113,6 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 
 ## Current limitations
 
-- **Gift badges are not supported yet.** I simply haven't bothered implementing them for now.
 - Discord updates may break patches without warning.
 - Some features are still experimental.
 - ProfileSpoofer Network is still under development.
