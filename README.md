@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.2-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.3-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -100,6 +100,16 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - ProfileSpoofer Network
 - Shared profiles between ProfileSpoofer users
 - Debug tools
+
+## All badges supported by ProfileSpoofer
+
+All badges below are rendered locally only. They do not grant real Discord badges or account features.
+
+- **Core:** Discord Staff, Partner, HypeSquad Events, HypeSquad Bravery, Brilliance and Balance, Bug Hunter Level 1 and 2, Early Supporter, Moderator Programs Alumni, Early Verified Bot Developer, Active Developer, Legacy Username, Quest and Orbs.
+- **Nitro tenure:** Nitro, Bronze, Silver, Gold, Platinum, Diamond, Emerald, Ruby and Opal.
+- **Server Boost tenure:** 1, 2, 3, 6, 9, 12, 15, 18 and 24 months.
+- **Gifting Patron:** Patron, Champion, Luminary, Icon, Hero and Legend.
+- **Experimental series:** all 10 levels of Game Variety, Game Time, Streaming and Account Age.
 
 ## Coming soon
 
