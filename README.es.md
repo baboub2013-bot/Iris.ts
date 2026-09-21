@@ -84,7 +84,7 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Nombre de usuario antiguo personalizado
 - Fecha de creación de cuenta personalizada
 - Insignias de perfil estilo Discord
-- Etiquetas de perfil *(el renderizado visual se mejorará más adelante)*
+- Etiquetas de perfil *(el uso se mejorará más adelante)*
 - Antigüedad Nitro personalizada
 - Antigüedad de boost de servidor personalizada
 - Decoraciones de avatar
@@ -106,7 +106,6 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - Insignia Game Time
 - Insignia Streaming
 - Insignia Account Age
-- Spoofer local de etiqueta Staff
 - Spoofer local de bots / creador de perfiles de bot falsos
 - Port Android para Revenge (ver [mobile/](./mobile/))
 
