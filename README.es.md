@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.6-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.7-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -128,6 +128,27 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 
 - Spoofer de mensajes oficiales de Discord *(solo local)*
 - Port Android para Revenge (ver [mobile/](./mobile/))
+
+## Registro de cambios
+
+### v0.1.7
+
+- Se añadió este registro de cambios.
+
+### v0.1.6
+
+- Se terminó el spoofer local de perfil de bot.
+- Se añadieron las insignias de aplicación nativas **Uses Commands** y **Supports AutoMod**.
+- Se añadieron la vista previa del perfil de bot y la página de votación de la comunidad.
+- Se documentó el cierre actual de Discord relacionado con guardar.
+
+### v0.1.5
+
+- Se añadió el spoofer de mensajes oficiales de Discord solo local a la hoja de ruta.
+
+### v0.1.4
+
+- Se añadió la vista previa del perfil con las insignias compatibles.
 
 ## Voto de la comunidad
 
