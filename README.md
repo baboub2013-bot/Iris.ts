@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.5-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.6-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -77,6 +77,14 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 
 <img src="./assets/readme/settings-panel.webp" alt="ProfileSpoofer settings panel" width="600">
 
+### Bot profile spoofer
+
+Create a local bot-style profile with native **Bot / App** presentation and native application badges, including **Uses Commands** and **Supports AutoMod**. Nothing is created or changed on Discord servers.
+
+<p align="center">
+  <img src="./assets/readme/bot-profile-preview.png" alt="ProfileSpoofer local bot profile with app badge" width="500">
+</p>
+
 ## Features
 
 - Custom username
@@ -100,6 +108,7 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 - ProfileSpoofer Network
 - Shared profiles between ProfileSpoofer users
 - Debug tools
+- Local bot profile spoofer with native bot badges *(Uses Commands and Supports AutoMod)*
 
 ## All badges supported by ProfileSpoofer
 
@@ -119,9 +128,12 @@ All badges below are rendered locally only. They do not grant real Discord badge
 
 > **Note:** All the coming soon ideas are ideas that will be implemented **before** the phone update.
 
-- Local bot spoofer / fake bot profile maker
 - Official Discord messages spoofer *(local only)*
 - Android mobile port for Revenge (see [mobile/](./mobile/))
+
+## Community vote
+
+Think ProfileSpoofer is the best Discord profile spoofer? [Vote on the community page](https://baboub2013-bot.github.io/ProfileSpoofer/) or react directly on the [GitHub poll](https://github.com/baboub2013-bot/ProfileSpoofer/issues/1).
 
 ## Current limitations
 
@@ -129,6 +141,7 @@ All badges below are rendered locally only. They do not grant real Discord badge
 - Some features are still experimental.
 - ProfileSpoofer Network is still under development.
 - Custom media handling is still limited.
+- Saving your ProfileSpoofer settings may currently crash Discord. This is a known issue and will be fixed later.
 
 ## ProfileSpoofer Network
 

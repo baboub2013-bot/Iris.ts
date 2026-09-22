@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProfileSpoofer — Community vote</title>
+  <meta name="description" content="Vote for ProfileSpoofer on GitHub.">
+  <style>
+    :root { color-scheme: dark; --bg:#0d0b14; --card:#171320; --line:#302947; --purple:#7166f6; --text:#f5f3ff; --muted:#b9b3ca; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px; font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--text); background:radial-gradient(circle at top,#292052 0,transparent 42%),var(--bg); }
+    main { width:min(760px,100%); text-align:center; }
+    .logo { width:86px; height:86px; display:grid; place-items:center; margin:auto; border-radius:26px; font-size:42px; background:linear-gradient(135deg,#7c6bff,#5146c8); box-shadow:0 18px 50px #0008; }
+    h1 { margin:22px 0 8px; font-size:clamp(2rem,7vw,4rem); line-height:1; }
+    p { color:var(--muted); }
+    .card { margin-top:32px; padding:28px; border:1px solid var(--line); border-radius:24px; background:#171320df; box-shadow:0 20px 60px #0005; }
+    .buttons { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0 14px; }
+    a.vote { padding:16px; border-radius:14px; text-decoration:none; color:white; font-weight:800; background:var(--purple); transition:transform .15s ease,filter .15s ease; }
+    a.vote.no { background:#302947; }
+    a.vote:hover { transform:translateY(-2px); filter:brightness(1.12); }
+    small { color:var(--muted); }
+    img { width:min(100%,500px); margin-top:28px; border-radius:18px; border:1px solid var(--line); }
+    footer { margin-top:22px; color:var(--muted); font-size:.86rem; }
+    footer a { color:#a89fff; }
+    @media(max-width:480px) { .buttons { grid-template-columns:1fr; } .card { padding:20px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="logo">✦</div>
+    <h1>Is ProfileSpoofer the best?</h1>
+    <p>A local-only Vencord profile customizer. No real Discord items, permissions or server-side changes.</p>
+    <section class="card">
+      <h2>Community vote</h2>
+      <p>Pick your answer, then leave the matching reaction on the GitHub poll.</p>
+      <div class="buttons">
+        <a class="vote" href="https://github.com/baboub2013-bot/ProfileSpoofer/issues/1" target="_blank" rel="noopener">👍 Yes, it’s the best</a>
+        <a class="vote no" href="https://github.com/baboub2013-bot/ProfileSpoofer/issues/1" target="_blank" rel="noopener">👎 Not yet</a>
+      </div>
+      <small>Votes are counted through GitHub reactions, so one GitHub account = one real community vote.</small>
+    </section>
+    <img src="../assets/readme/bot-profile-preview.png" alt="ProfileSpoofer bot profile preview">
+    <footer><a href="https://github.com/baboub2013-bot/ProfileSpoofer">View the project on GitHub</a></footer>
+  </main>
+</body>
+</html>

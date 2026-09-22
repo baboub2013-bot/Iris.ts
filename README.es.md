@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.5-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.6-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -75,6 +75,14 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 
 <img src="./assets/readme/settings-panel.webp" alt="Panel de ajustes de ProfileSpoofer" width="600">
 
+### Spoofer de perfil de bot
+
+Crea un perfil local con estilo de bot, presentación nativa **Bot / App** e insignias de aplicación nativas, incluyendo **Uses Commands** y **Supports AutoMod**. No se crea ni se modifica nada en los servidores de Discord.
+
+<p align="center">
+  <img src="./assets/readme/bot-profile-preview.png" alt="Perfil local de bot de ProfileSpoofer con insignia App" width="500">
+</p>
+
 ## Funciones
 
 - Nombre de usuario personalizado
@@ -98,6 +106,7 @@ ProfileSpoofer no solo coloca una insignia visual sobre el perfil. Proporciona l
 - ProfileSpoofer Network
 - Perfiles compartidos entre usuarios de ProfileSpoofer
 - Herramientas de depuración
+- Spoofer local de perfil de bot con insignias nativas *(Uses Commands y Supports AutoMod)*
 
 ## Todas las insignias compatibles con ProfileSpoofer
 
@@ -117,9 +126,12 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 
 > **Nota:** Todas las ideas de « Próximamente » se implementarán **antes** de la actualización para móvil.
 
-- Spoofer local de bots / creador de perfiles de bot falsos
 - Spoofer de mensajes oficiales de Discord *(solo local)*
 - Port Android para Revenge (ver [mobile/](./mobile/))
+
+## Voto de la comunidad
+
+¿Crees que ProfileSpoofer es el mejor spoofer de Discord? [Vota en la página de la comunidad](https://baboub2013-bot.github.io/ProfileSpoofer/) o reacciona directamente en la [encuesta de GitHub](https://github.com/baboub2013-bot/ProfileSpoofer/issues/1).
 
 ## Limitaciones actuales
 
@@ -127,6 +139,7 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 - Algunas funciones siguen siendo experimentales.
 - ProfileSpoofer Network sigue en desarrollo.
 - La gestión de medios personalizados aún es limitada.
+- Guardar los ajustes de ProfileSpoofer puede hacer que Discord se cierre actualmente. Es un problema conocido que se arreglará más adelante.
 
 ## ProfileSpoofer Network
 
