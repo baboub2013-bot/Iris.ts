@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.7-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.8-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -131,6 +131,11 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 
 ## Registro de cambios
 
+### v0.1.8
+
+- Se corrigió el cierre de Discord que podía ocurrir al guardar los ajustes de ProfileSpoofer.
+- Se rediseñó la interfaz de ProfileSpoofer.
+
 ### v0.1.7
 
 - Se añadió este registro de cambios.
@@ -160,7 +165,7 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 - Algunas funciones siguen siendo experimentales.
 - ProfileSpoofer Network sigue en desarrollo.
 - La gestión de medios personalizados aún es limitada.
-- Guardar los ajustes de ProfileSpoofer puede hacer que Discord se cierre actualmente. Es un problema conocido que se arreglará más adelante.
+
 
 ## ProfileSpoofer Network
 
