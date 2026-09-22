@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.4-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.5-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -120,6 +120,7 @@ All badges below are rendered locally only. They do not grant real Discord badge
 > **Note:** All the coming soon ideas are ideas that will be implemented **before** the phone update.
 
 - Local bot spoofer / fake bot profile maker
+- Official Discord messages spoofer *(local only)*
 - Android mobile port for Revenge (see [mobile/](./mobile/))
 
 ## Current limitations
