@@ -88,7 +88,7 @@ const COLLECTIBLES_PATH =
     "/assets/collectibles/";
 
 const NETWORK_DECORATION_PREFIX =
-    "profile-spoofer-network-";
+    "iris-network-";
 
 const DEFAULT_NAMEPLATE_PALETTE =
     "cobalt";
@@ -171,7 +171,7 @@ const NAMEPLATE_PALETTES:
     none: {
         darkBackground: "#5865F2",
         lightBackground: "#7983F5",
-        name: "profile-spoofer"
+        name: "iris"
     }
 };
 
@@ -342,7 +342,7 @@ function buildRemoteBadges(
 
         result.push({
             id:
-                `profile-spoofer-network-${userId}-${id}-${index++}`,
+                `iris-network-${userId}-${id}-${index++}`,
 
             description:
                 badgeDescription(
@@ -383,7 +383,7 @@ function buildRemoteBadges(
     ) {
         result.push({
             id:
-                `profile-spoofer-network-${userId}-boost-${index++}`,
+                `iris-network-${userId}-boost-${index++}`,
 
             description:
                 `Server Booster (${boost.name})`,
@@ -410,7 +410,7 @@ export function registerNetworkBadgeProvider() {
 
     networkBadgeProvider = {
         id:
-            "profile-spoofer-network-provider",
+            "iris-network-provider",
 
         getBadges({
             userId

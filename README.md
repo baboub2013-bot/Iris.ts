@@ -1,6 +1,6 @@
-# ProfileSpoofer
+# Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.8-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.9-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -10,7 +10,7 @@
 
 > [!WARNING]
 > ## 🚧 EARLY DEVELOPMENT / UNSTABLE
-> ProfileSpoofer is still under active development.
+> Iris.ts is still under active development.
 >
 > Bugs, broken Discord patches, visual glitches, crashes, incomplete features and regressions should be expected.
 >
@@ -22,17 +22,17 @@
 >
 > I experienced a lot of crashes while debugging this plugin. There may still be plenty of crashes or regressions left, especially after Discord updates.
 
-ProfileSpoofer is a custom Vencord userplugin for locally customizing Discord profile elements.
+Iris.ts is a custom Vencord userplugin for locally customizing Discord profile elements.
 
 It locally patches the profile data that compatible Discord client features read — it is not just an image overlay. That is why native UI such as Nitro tenure, profile badges and supported cosmetics can render from the selected local state.
 
-**Unlock All** also unlocks supported cosmetic choices locally in Discord's own picker. It never grants real items, Nitro, badges or permissions, and people without ProfileSpoofer still see the normal account.
+**Unlock All** also unlocks supported cosmetic choices locally in Discord's own picker. It never grants real items, Nitro, badges or permissions, and people without Iris.ts still see the normal account.
 
 > This might be the best profile spoofer for Vencord.
 
-It also includes **ProfileSpoofer Network**, an optional system allowing ProfileSpoofer users to share their customized profiles with other users of the plugin.
+It also includes **Iris Network**, an optional system allowing Iris.ts users to share their customized profiles with other users of the plugin.
 
-Users without ProfileSpoofer continue to see the normal Discord profile.
+Users without Iris.ts continue to see the normal Discord profile.
 
 ## Before / After
 
@@ -42,8 +42,8 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
     <td align="center"><strong>After</strong></td>
   </tr>
   <tr>
-    <td><img src="./assets/readme/before.webp" alt="ProfileSpoofer before" width="320"></td>
-    <td><img src="./assets/readme/after.webp" alt="ProfileSpoofer after" width="320"></td>
+    <td><img src="./assets/readme/before.webp" alt="Iris.ts before" width="320"></td>
+    <td><img src="./assets/readme/after.webp" alt="Iris.ts after" width="320"></td>
   </tr>
 </table>
 
@@ -55,7 +55,7 @@ Users without ProfileSpoofer continue to see the normal Discord profile.
 
 ### Nitro tenure — local client rendering
 
-ProfileSpoofer does not only place a visual badge over the profile. It locally supplies the Nitro tenure data Discord's own client reads, so the native Nitro screens can render the selected tier, subscriber-since date and badge-evolution flow. Nothing is changed server-side and other Discord users still see the real profile.
+Iris.ts does not only place a visual badge over the profile. It locally supplies the Nitro tenure data Discord's own client reads, so the native Nitro screens can render the selected tier, subscriber-since date and badge-evolution flow. Nothing is changed server-side and other Discord users still see the real profile.
 
 <table>
   <tr>
@@ -71,18 +71,18 @@ ProfileSpoofer does not only place a visual badge over the profile. It locally s
 
 ### Cosmetics panel
 
-<img src="./assets/readme/cosmetics-panel.webp" alt="ProfileSpoofer cosmetics panel" width="280">
+<img src="./assets/readme/cosmetics-panel.webp" alt="Iris.ts cosmetics panel" width="280">
 
 ### Settings panel
 
-<img src="./assets/readme/settings-panel.webp" alt="ProfileSpoofer settings panel" width="600">
+<img src="./assets/readme/settings-panel.webp" alt="Iris.ts settings panel" width="600">
 
 ### Bot profile spoofer
 
 Create a local bot-style profile with native **Bot / App** presentation and native application badges, including **Uses Commands** and **Supports AutoMod**. Nothing is created or changed on Discord servers.
 
 <p align="center">
-  <img src="./assets/readme/bot-profile-preview.png" alt="ProfileSpoofer local bot profile with app badge" width="500">
+  <img src="./assets/readme/bot-profile-preview.png" alt="Iris.ts local bot profile with app badge" width="500">
 </p>
 
 ## Features
@@ -105,15 +105,15 @@ Create a local bot-style profile with native **Bot / App** presentation and nati
 - Profile frames
 - Custom badges
 - Collectibles Unlock All
-- ProfileSpoofer Network
-- Shared profiles between ProfileSpoofer users
+- Iris Network
+- Shared profiles between Iris.ts users
 - Debug tools
 - Local bot profile spoofer with native bot badges *(Uses Commands and Supports AutoMod)*
 
-## All badges supported by ProfileSpoofer
+## All badges supported by Iris.ts
 
 <p align="center">
-  <img src="./assets/readme/supported-badges-preview.png" alt="ProfileSpoofer profile preview with supported badges" width="600">
+  <img src="./assets/readme/supported-badges-preview.png" alt="Iris.ts profile preview with supported badges" width="600">
 </p>
 
 All badges below are rendered locally only. They do not grant real Discord badges or account features.
@@ -133,10 +133,14 @@ All badges below are rendered locally only. They do not grant real Discord badge
 
 ## Changelog
 
+### v0.1.9
+
+- Full project rebrand to Iris.ts.
+
 ### v0.1.8
 
-- Fixed the Discord crash that could happen while saving ProfileSpoofer settings.
-- Redesigned the ProfileSpoofer UI.
+- Fixed the Discord crash that could happen while saving Iris.ts settings.
+- Redesigned the Iris.ts UI.
 
 ### v0.1.7
 
@@ -159,43 +163,43 @@ All badges below are rendered locally only. They do not grant real Discord badge
 
 ## Community vote
 
-Think ProfileSpoofer is the best Discord profile spoofer? [Vote on the community page](https://baboub2013-bot.github.io/ProfileSpoofer/) or react directly on the [GitHub poll](https://github.com/baboub2013-bot/ProfileSpoofer/issues/1).
+Think Iris.ts is the best Discord profile spoofer? [Vote on the community page](https://baboub2013-bot.github.io/Iris.ts/) or react directly on the [GitHub poll](https://github.com/baboub2013-bot/Iris.ts/issues/1).
 
 ## Current limitations
 
 - Discord updates may break patches without warning.
 - Some features are still experimental.
-- ProfileSpoofer Network is still under development.
+- Iris Network is still under development.
 - Custom media handling is still limited.
 
 
-## ProfileSpoofer Network
+## Iris Network
 
-ProfileSpoofer Network allows users to optionally publish supported ProfileSpoofer profile settings.
+Iris Network allows users to optionally publish supported Iris.ts profile settings.
 
-Other ProfileSpoofer clients can retrieve those settings and render the customized profile locally.
+Other Iris.ts clients can retrieve those settings and render the customized profile locally.
 
-ProfileSpoofer Network does not modify the user's actual Discord profile.
+Iris Network does not modify the user's actual Discord profile.
 
 ### Privacy
 
-ProfileSpoofer does **not** require your Discord account token, password or cookies.
+Iris.ts does **not** require your Discord account token, password or cookies.
 
 Network authentication uses Discord OAuth2.
 
 Profile sharing is optional.
 
-Only supported ProfileSpoofer profile fields are published when sharing is enabled.
+Only supported Iris.ts profile fields are published when sharing is enabled.
 
 Custom user-provided media can be disabled by receiving users.
 
 ## Installation
 
-> ProfileSpoofer currently targets custom Vencord development builds.
+> Iris.ts currently targets custom Vencord development builds.
 
 Copy the **contents of** `src/` into:
 
-`Vencord/src/userplugins/ProfileSpoofer`
+`Vencord/src/userplugins/Iris.ts`
 
 Then build Vencord normally.
 
@@ -203,17 +207,17 @@ Then build Vencord normally.
 
 - `src/` — Vencord plugin source
 - `assets/readme/` — README previews
-- `database/migrations/` — ProfileSpoofer Network database schema
+- `database/migrations/` — Iris Network database schema
 
 ## Network database
 
-ProfileSpoofer Network uses a database for authentication sessions and shared profiles.
+Iris Network uses a database for authentication sessions and shared profiles.
 
 The initial database schema is available at:
 
 `database/migrations/0001_init.sql`
 
-This migration is used by the experimental ProfileSpoofer Network backend.
+This migration is used by the experimental Iris Network backend.
 
 The network backend is still under development and its setup may change between development releases.
 
@@ -239,7 +243,7 @@ When reporting a bug, please include:
 
 - Vencord version
 - Discord Stable / PTB / Canary
-- ProfileSpoofer version or commit
+- Iris.ts version or commit
 - What you expected
 - What actually happened
 - Relevant console logs
@@ -249,9 +253,9 @@ Do not include Discord tokens, cookies, OAuth session tokens or other private cr
 
 ## Disclaimer
 
-ProfileSpoofer is not affiliated with Discord or Vencord.
+Iris.ts is not affiliated with Discord or Vencord.
 
-ProfileSpoofer only changes the local Discord client experience.
+Iris.ts only changes the local Discord client experience.
 
 It does not grant real Discord badges, Nitro, collectibles, permissions or other server-side account features.
 

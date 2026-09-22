@@ -1997,7 +1997,7 @@ function collectShopItems(
                 true;
 
             console.info(
-                "[ProfileSpoofer] Raw profile frame sample (use this to check the layer structure)",
+                "[Iris.ts] Raw profile frame sample (use this to check the layer structure)",
                 {
                     skuId,
 
@@ -2595,7 +2595,7 @@ function useShopCosmetics() {
                 }
 
                 console.error(
-                    "[ProfileSpoofer] Shop cosmetics failed",
+                    "[Iris.ts] Shop cosmetics failed",
                     error
                 );
 
@@ -3440,7 +3440,7 @@ export function SettingsPanel() {
         refreshLocalProfile();
 
         toast(
-            "ProfileSpoofer saved."
+            "Iris.ts saved."
         );
     }
 
@@ -3455,7 +3455,7 @@ export function SettingsPanel() {
                     <div
                         className="ps-title"
                     >
-                        ProfileSpoofer
+                        Iris.ts
                     </div>
 
                     <div
@@ -4405,7 +4405,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    Hide Discord's native badge list and keep your local ProfileSpoofer badges.
+                                    Hide Discord's native badge list and keep your local Iris.ts badges.
                                 </span>
                             </div>
 
@@ -4429,7 +4429,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    Print ProfileSpoofer information in the Discord console.
+                                    Print Iris.ts information in the Discord console.
                                 </span>
                             </div>
 

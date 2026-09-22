@@ -152,11 +152,11 @@ export const NITRO_TIERS: TierEntry[] = [
  * art, date): the tier is read from profile.badges and the date
  * from Xb(), patched in index.ts (getNitroSinceHook).
  *
- * Simple mode (nitroSimpleTooltip): "profile_spoofer_" prefix,
+ * Simple mode (nitroSimpleTooltip): "iris_" prefix,
  * rendered as a regular badge with a plain tooltip. Fallback if
  * the native card ever stops working.
  */
-const SPOOFED_BADGE_PREFIX = "profile_spoofer_";
+const SPOOFED_BADGE_PREFIX = "iris_";
 export interface NitroTenureEntry {
     months: number;
     badgeId: string;

@@ -1,6 +1,6 @@
-# ProfileSpoofer Mobile
+# Iris.ts Mobile
 
-Android port of ProfileSpoofer for **Revenge**.
+Android port of Iris.ts for **Revenge**.
 
 > Status: planned — no mobile implementation is in this folder yet.
 
@@ -10,5 +10,5 @@ The desktop plugin in `../src/` targets Vencord and cannot run on mobile as-is. 
 
 - Local profile badge and Nitro tenure rendering
 - Unlock All-compatible local cosmetics
-- Tag spoofing, including a local Staff tag
+- Tag spoofing with planned usability improvements
 - Shared catalog data with the desktop project where possible

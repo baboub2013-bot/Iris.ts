@@ -36,7 +36,7 @@ import { settings } from "./settings";
  *    /users/@me/profile, or a guild profile), cosmetic fields
  *    (avatar decoration, nameplate, profile effect, profile
  *    frame) are REMOVED from the request and stored in the
- *    ProfileSpoofer settings instead. The existing spoof system
+ *    Iris.ts settings instead. The existing spoof system
  *    then displays them, for your account only. Everything
  *    else in the request (bio, pronouns...) is sent normally.
  */
@@ -147,7 +147,7 @@ function debug(
 ) {
     if (settings.store.debugLogs) {
         console.info(
-            "[ProfileSpoofer] [UnlockAll]",
+            "[Iris.ts] [UnlockAll]",
             ...args
         );
     }
@@ -816,7 +816,7 @@ function installSaveInterception() {
          * so Unlock All must not stay active.
          */
         console.warn(
-            "[ProfileSpoofer] Unlock All: could not intercept profile saves, unlock disabled for safety"
+            "[Iris.ts] Unlock All: could not intercept profile saves, unlock disabled for safety"
         );
     }
 }
@@ -875,7 +875,7 @@ export function enableUnlockAll(): boolean {
         !categoryStore
     ) {
         console.warn(
-            "[ProfileSpoofer] Unlock All: collectibles stores not found"
+            "[Iris.ts] Unlock All: collectibles stores not found"
         );
 
         uninstallSaveInterception();

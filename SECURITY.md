@@ -1,6 +1,6 @@
 # Security Policy
 
-ProfileSpoofer is experimental software.
+Iris.ts is experimental software.
 
 ## Sensitive information
 

@@ -1,6 +1,6 @@
-# Contributing to ProfileSpoofer
+# Contributing to Iris.ts
 
-Thanks for your interest in ProfileSpoofer.
+Thanks for your interest in Iris.ts.
 
 The project is currently experimental and Discord internals can change frequently.
 
@@ -22,7 +22,7 @@ Include:
 
 - Discord client channel
 - Vencord version
-- ProfileSpoofer version or commit
+- Iris.ts version or commit
 - Reproduction steps
 - Relevant logs
 

@@ -1,6 +1,6 @@
-# ProfileSpoofer
+# Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.8-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.9-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -10,7 +10,7 @@
 
 > [!WARNING]
 > ## 🚧 DÉVELOPPEMENT PRÉCOCE / INSTABLE
-> ProfileSpoofer est encore en développement actif.
+> Iris.ts est encore en développement actif.
 >
 > Des bugs, patches Discord cassés, glitches visuels, crashes, fonctions incomplètes et régressions sont à prévoir.
 >
@@ -22,15 +22,15 @@
 >
 > J’ai rencontré beaucoup de crashes pendant le débogage de ce plugin. Il peut encore en rester pas mal, surtout après une mise à jour Discord.
 
-ProfileSpoofer est un userplugin Vencord qui permet de personnaliser localement des éléments de profil Discord.
+Iris.ts est un userplugin Vencord qui permet de personnaliser localement des éléments de profil Discord.
 
 Il modifie localement les données de profil que les fonctionnalités compatibles du client Discord lisent — ce n’est pas juste une image par-dessus. C’est pour ça que l’interface native peut afficher le palier Nitro choisi, les badges de profil et les cosmétiques compatibles depuis l’état local sélectionné.
 
-**Unlock All** débloque aussi localement des choix cosmétiques compatibles dans le sélecteur Discord. Il ne donne jamais de vrais objets, Nitro, badges ou permissions ; les utilisateurs sans ProfileSpoofer voient toujours le compte normal.
+**Unlock All** débloque aussi localement des choix cosmétiques compatibles dans le sélecteur Discord. Il ne donne jamais de vrais objets, Nitro, badges ou permissions ; les utilisateurs sans Iris.ts voient toujours le compte normal.
 
-Il comprend aussi **ProfileSpoofer Network**, un système optionnel pour partager les profils personnalisés entre utilisateurs du plugin.
+Il comprend aussi **Iris Network**, un système optionnel pour partager les profils personnalisés entre utilisateurs du plugin.
 
-Les utilisateurs sans ProfileSpoofer continuent de voir le profil Discord normal.
+Les utilisateurs sans Iris.ts continuent de voir le profil Discord normal.
 
 ## Avant / Après
 
@@ -40,8 +40,8 @@ Les utilisateurs sans ProfileSpoofer continuent de voir le profil Discord normal
     <td align="center"><strong>Après</strong></td>
   </tr>
   <tr>
-    <td><img src="./assets/readme/before.webp" alt="ProfileSpoofer avant" width="320"></td>
-    <td><img src="./assets/readme/after.webp" alt="ProfileSpoofer après" width="320"></td>
+    <td><img src="./assets/readme/before.webp" alt="Iris.ts avant" width="320"></td>
+    <td><img src="./assets/readme/after.webp" alt="Iris.ts après" width="320"></td>
   </tr>
 </table>
 
@@ -53,7 +53,7 @@ Les utilisateurs sans ProfileSpoofer continuent de voir le profil Discord normal
 
 ### Ancienneté Nitro — rendu local du client
 
-ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit localement les données d’ancienneté Nitro que le client Discord lit, afin que les écrans Nitro natifs puissent afficher le palier choisi, la date « Subscriber since » et le flux d’évolution du badge. Rien ne change côté serveur et les autres utilisateurs Discord voient toujours le vrai profil.
+Iris.ts ne pose pas seulement un badge visuel sur le profil. Il fournit localement les données d’ancienneté Nitro que le client Discord lit, afin que les écrans Nitro natifs puissent afficher le palier choisi, la date « Subscriber since » et le flux d’évolution du badge. Rien ne change côté serveur et les autres utilisateurs Discord voient toujours le vrai profil.
 
 <table>
   <tr>
@@ -69,18 +69,18 @@ ProfileSpoofer ne pose pas seulement un badge visuel sur le profil. Il fournit l
 
 ### Panneau cosmétiques
 
-<img src="./assets/readme/cosmetics-panel.webp" alt="Panneau cosmétiques ProfileSpoofer" width="280">
+<img src="./assets/readme/cosmetics-panel.webp" alt="Panneau cosmétiques Iris.ts" width="280">
 
 ### Panneau des réglages
 
-<img src="./assets/readme/settings-panel.webp" alt="Panneau des réglages ProfileSpoofer" width="600">
+<img src="./assets/readme/settings-panel.webp" alt="Panneau des réglages Iris.ts" width="600">
 
 ### Spoofer de profil bot
 
 Crée un profil local de style bot avec une présentation native **Bot / App** et les badges d’application natifs **Uses Commands** et **Supports AutoMod**. Rien n’est créé ou modifié sur les serveurs Discord.
 
 <p align="center">
-  <img src="./assets/readme/bot-profile-preview.png" alt="Profil bot local ProfileSpoofer avec badge App" width="500">
+  <img src="./assets/readme/bot-profile-preview.png" alt="Profil bot local Iris.ts avec badge App" width="500">
 </p>
 
 ## Fonctionnalités
@@ -103,15 +103,15 @@ Crée un profil local de style bot avec une présentation native **Bot / App** e
 - Cadres de profil
 - Badges personnalisés
 - Unlock All pour les collectibles
-- ProfileSpoofer Network
-- Profils partagés entre utilisateurs ProfileSpoofer
+- Iris Network
+- Profils partagés entre utilisateurs d’Iris.ts
 - Outils de debug
 - Spoofer de profil bot local avec badges de bot natifs *(Uses Commands et Supports AutoMod)*
 
-## Tous les badges pris en charge par ProfileSpoofer
+## Tous les badges pris en charge par Iris.ts
 
 <p align="center">
-  <img src="./assets/readme/supported-badges-preview.png" alt="Aperçu de profil ProfileSpoofer avec les badges pris en charge" width="600">
+  <img src="./assets/readme/supported-badges-preview.png" alt="Aperçu de profil Iris.ts avec les badges pris en charge" width="600">
 </p>
 
 Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent pas de vrais badges Discord ou d’avantages sur le compte.
@@ -131,10 +131,14 @@ Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent 
 
 ## Changelog
 
+### v0.1.9
+
+- Rebrand complet du projet en Iris.ts.
+
 ### v0.1.8
 
-- Correction du crash Discord qui pouvait arriver lors de la sauvegarde des réglages ProfileSpoofer.
-- Refonte de l’interface de ProfileSpoofer.
+- Correction du crash Discord qui pouvait arriver lors de la sauvegarde des réglages Iris.ts.
+- Refonte de l’interface d’Iris.ts.
 
 ### v0.1.7
 
@@ -157,27 +161,27 @@ Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent 
 
 ## Vote de la communauté
 
-Tu penses que ProfileSpoofer est le meilleur spoofer Discord ? [Vote sur la page communautaire](https://baboub2013-bot.github.io/ProfileSpoofer/) ou réagis directement sur le [sondage GitHub](https://github.com/baboub2013-bot/ProfileSpoofer/issues/1).
+Tu penses qu’Iris.ts est le meilleur spoofer Discord ? [Vote sur la page communautaire](https://baboub2013-bot.github.io/Iris.ts/) ou réagis directement sur le [sondage GitHub](https://github.com/baboub2013-bot/Iris.ts/issues/1).
 
 ## Limitations actuelles
 
 - Les mises à jour Discord peuvent casser des patches sans prévenir.
 - Certaines fonctions sont encore expérimentales.
-- ProfileSpoofer Network est encore en développement.
+- Iris Network est encore en développement.
 - La gestion des médias personnalisés reste limitée.
 
 
-## ProfileSpoofer Network
+## Iris Network
 
-ProfileSpoofer Network permet de publier optionnellement les réglages de profil pris en charge.
+Iris Network permet de publier optionnellement les réglages de profil pris en charge.
 
-Les autres clients ProfileSpoofer peuvent récupérer ces réglages et afficher le profil personnalisé localement.
+Les autres clients d’Iris.ts peuvent récupérer ces réglages et afficher le profil personnalisé localement.
 
-ProfileSpoofer Network ne modifie pas le vrai profil Discord de l’utilisateur.
+Iris Network ne modifie pas le vrai profil Discord de l’utilisateur.
 
 ### Confidentialité
 
-ProfileSpoofer ne demande **jamais** ton token Discord, mot de passe ou cookies.
+Iris.ts ne demande **jamais** ton token Discord, mot de passe ou cookies.
 
 L’authentification réseau utilise Discord OAuth2.
 
@@ -189,11 +193,11 @@ Les médias personnalisés peuvent être masqués par les utilisateurs qui les r
 
 ## Installation
 
-> ProfileSpoofer cible actuellement les builds Vencord de développement.
+> Iris.ts cible actuellement les builds Vencord de développement.
 
 Copie le **contenu de** `src/` dans :
 
-`Vencord/src/userplugins/ProfileSpoofer`
+`Vencord/src/userplugins/Iris.ts`
 
 Puis build Vencord normalement.
 
@@ -201,17 +205,17 @@ Puis build Vencord normalement.
 
 - `src/` — source du plugin Vencord
 - `assets/readme/` — aperçus du README
-- `database/migrations/` — schéma de base de données de ProfileSpoofer Network
+- `database/migrations/` — schéma de base de données d’Iris Network
 
 ## Base de données réseau
 
-ProfileSpoofer Network utilise une base de données pour les sessions d’authentification et les profils partagés.
+Iris Network utilise une base de données pour les sessions d’authentification et les profils partagés.
 
 Le schéma initial est disponible ici :
 
 `database/migrations/0001_init.sql`
 
-Cette migration est utilisée par le backend expérimental de ProfileSpoofer Network.
+Cette migration est utilisée par le backend expérimental d’Iris Network.
 
 Le backend réseau est toujours en développement et son installation peut changer entre les versions.
 
@@ -237,7 +241,7 @@ Quand tu signales un bug, inclus si possible :
 
 - Version de Vencord
 - Discord Stable / PTB / Canary
-- Version ou commit ProfileSpoofer
+- Version ou commit Iris.ts
 - Ce que tu attendais
 - Ce qui s’est réellement passé
 - Les logs de console pertinents
@@ -247,9 +251,9 @@ N’inclus jamais de token, cookies, session OAuth ou autre donnée sensible.
 
 ## Avertissement
 
-ProfileSpoofer n’est affilié ni à Discord ni à Vencord.
+Iris.ts n’est affilié ni à Discord ni à Vencord.
 
-ProfileSpoofer change uniquement l’expérience du client Discord local.
+Iris.ts change uniquement l’expérience du client Discord local.
 
 Il ne donne pas de vrais badges Discord, Nitro, collectibles, permissions ou autres avantages serveur.
 

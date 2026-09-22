@@ -351,7 +351,7 @@ function buildBadges():
 
             result.push({
                 id:
-                    `profile-spoofer-custom-${badge.id}-${index++}`,
+                    `iris-custom-${badge.id}-${index++}`,
 
                 description:
                     badge.tooltip
@@ -405,7 +405,7 @@ function buildBadges():
 
         result.push({
             id:
-                `profile-spoofer-${id}-${index++}`,
+                `iris-${id}-${index++}`,
 
             description:
                 badgeDescription(
@@ -449,7 +449,7 @@ function buildBadges():
     ) {
         result.push({
             id:
-                `profile-spoofer-boost-${index++}`,
+                `iris-boost-${index++}`,
 
             description:
                 `Server Booster (${boost.name})`,
@@ -482,7 +482,7 @@ export function registerBadgeProvider() {
 
     badgeProvider = {
         id:
-            "profile-spoofer-provider",
+            "iris-provider",
 
         getBadges({
             userId
@@ -558,7 +558,7 @@ function getAvatarDecorationOverride():
                     unlockedAsset,
 
                 skuId:
-                    "profile-spoofer-unlocked",
+                    "iris-unlocked",
 
                 expires_at:
                     null
@@ -586,7 +586,7 @@ function getAvatarDecorationOverride():
             decoration.asset,
 
         skuId:
-            `profile-spoofer-${decoration.id}`,
+            `iris-${decoration.id}`,
 
         expires_at:
             null
@@ -628,7 +628,7 @@ export function getAvatarDecorationURL(
 
     /*
      * We only process decorations created by
-     * ProfileSpoofer.
+     * Iris.ts.
      *
      * Never hijack a real decoration belonging
      * to another user.
@@ -636,7 +636,7 @@ export function getAvatarDecorationURL(
     if (
         !decoration?.skuId
             ?.startsWith(
-                "profile-spoofer-"
+                "iris-"
             )
     ) {
         return undefined;
@@ -788,7 +788,7 @@ const NAMEPLATE_PALETTES:
     none: {
         darkBackground: "#5865F2",
         lightBackground: "#7983F5",
-        name: "profile-spoofer"
+        name: "iris"
     }
 };
 
@@ -1142,7 +1142,7 @@ function buildSpoofedNameplate(
                     .debugLogs
             ) {
                 console.warn(
-                    "[ProfileSpoofer] Nameplate converter failed, using fallback shape",
+                    "[Iris.ts] Nameplate converter failed, using fallback shape",
                     error
                 );
             }
@@ -1222,7 +1222,7 @@ function getSpoofedNameplate(
             .debugLogs
     ) {
         console.info(
-            "[ProfileSpoofer] Nameplate resolved",
+            "[Iris.ts] Nameplate resolved",
             {
                 stored:
                     key,
@@ -1714,7 +1714,7 @@ function applySelfUserNameplate() {
                 .debugLogs
         ) {
             console.info(
-                "[ProfileSpoofer] Nameplate method 2 applied to own user record"
+                "[Iris.ts] Nameplate method 2 applied to own user record"
             );
         }
     } catch (
@@ -1725,7 +1725,7 @@ function applySelfUserNameplate() {
                 .debugLogs
         ) {
             console.warn(
-                "[ProfileSpoofer] Nameplate method 2 failed",
+                "[Iris.ts] Nameplate method 2 failed",
                 error
             );
         }
@@ -1925,7 +1925,7 @@ function refreshSelfUserRecord() {
                     .debugLogs
             ) {
                 console.info(
-                    "[ProfileSpoofer] Own user record refresh skipped (UserStore map not writable)"
+                    "[Iris.ts] Own user record refresh skipped (UserStore map not writable)"
                 );
             }
 
@@ -1941,7 +1941,7 @@ function refreshSelfUserRecord() {
                 .debugLogs
         ) {
             console.info(
-                "[ProfileSpoofer] Own user record refreshed for new nameplate"
+                "[Iris.ts] Own user record refreshed for new nameplate"
             );
         }
     } catch (
@@ -1952,7 +1952,7 @@ function refreshSelfUserRecord() {
                 .debugLogs
         ) {
             console.warn(
-                "[ProfileSpoofer] Own user record refresh failed",
+                "[Iris.ts] Own user record refresh failed",
                 error
             );
         }
@@ -2671,7 +2671,7 @@ export async function applyProfileChanges() {
             .debugLogs
     ) {
         console.info(
-            "[ProfileSpoofer] Refreshed"
+            "[Iris.ts] Refreshed"
         );
     }
 }

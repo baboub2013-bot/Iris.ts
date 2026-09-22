@@ -67,7 +67,7 @@ function isOwnUser(
 }
 
 export default definePlugin({
-    name: "ProfileSpoofer",
+    name: "Iris.ts",
 
     description:
         "Locally customise and spoof Discord profile elements.",
@@ -299,7 +299,7 @@ export default definePlugin({
             settings.store.debugLogs
         ) {
             console.info(
-                "[ProfileSpoofer] Started"
+                "[Iris.ts] Started"
             );
         }
     },
@@ -323,7 +323,7 @@ export default definePlugin({
             settings.store.debugLogs
         ) {
             console.info(
-                "[ProfileSpoofer] Stopped"
+                "[Iris.ts] Stopped"
             );
         }
     },
@@ -490,7 +490,7 @@ export default definePlugin({
     },
 
     toolboxActions: {
-        "Refresh ProfileSpoofer"() {
+        "Refresh Iris.ts"() {
             void applyProfileChanges();
 
             void syncOwnProfileIfNeeded(

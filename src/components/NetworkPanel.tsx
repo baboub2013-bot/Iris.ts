@@ -70,7 +70,7 @@ function friendlyError(
         value ===
         "oauth_not_configured"
     ) {
-        return "The ProfileSpoofer backend OAuth configuration is incomplete.";
+        return "The Iris Network backend OAuth configuration is incomplete.";
     }
 
     if (
@@ -84,7 +84,7 @@ function friendlyError(
         value ===
         "Failed to fetch"
     ) {
-        return "Could not reach the ProfileSpoofer backend. Check Vencord network permission and restart Discord.";
+        return "Could not reach the Iris Network backend. Check Vencord network permission and restart Discord.";
     }
 
     return (
@@ -157,7 +157,7 @@ export function NetworkPanel() {
             await beginNetworkLogin();
 
             toast(
-                "ProfileSpoofer Network connected."
+                "Iris Network connected."
             );
         } catch (
         error
@@ -220,7 +220,7 @@ export function NetworkPanel() {
 
             toast(
                 published
-                    ? "Your ProfileSpoofer profile is now shared."
+                    ? "Your Iris.ts profile is now shared."
                     : "Could not publish the profile.",
 
                 published
@@ -236,7 +236,7 @@ export function NetworkPanel() {
 
         toast(
             removed
-                ? "Your shared ProfileSpoofer profile was removed."
+                ? "Your shared Iris.ts profile was removed."
                 : "Could not remove the shared profile.",
 
             removed
@@ -321,7 +321,7 @@ export function NetworkPanel() {
         );
 
         toast(
-            "Refreshing ProfileSpoofer users seen by this client.",
+            "Refreshing Iris.ts users seen by this client.",
 
             Toasts.Type.MESSAGE
         );
@@ -361,11 +361,11 @@ export function NetworkPanel() {
                     <Forms.FormTitle
                         tag="h3"
                     >
-                        ProfileSpoofer Network
+                        Iris Network
                     </Forms.FormTitle>
 
                     <Forms.FormText>
-                        Share your local ProfileSpoofer profile with other people using ProfileSpoofer. Discord itself is never modified.
+                        Share your local Iris.ts profile with other people using Iris.ts. Discord itself is never modified.
                     </Forms.FormText>
                 </div>
 
@@ -421,7 +421,7 @@ export function NetworkPanel() {
                     </strong>
 
                     <span>
-                        OAuth uses only a ProfileSpoofer backend session. Your Discord token, password and cookies are never sent to the ProfileSpoofer backend.
+                        OAuth uses only an Iris Network backend session. Your Discord token, password and cookies are never sent to the Iris Network backend.
                     </span>
                 </div>
             </div>
@@ -431,7 +431,7 @@ export function NetworkPanel() {
             >
                 <div>
                     <strong>
-                        Share my ProfileSpoofer profile
+                        Share my Iris.ts profile
                     </strong>
 
                     <span>
@@ -458,7 +458,7 @@ export function NetworkPanel() {
             >
                 <div>
                     <strong>
-                        Show other ProfileSpoofer users
+                        Show other Iris.ts users
                     </strong>
 
                     <span>
