@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.7-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.8-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -131,6 +131,11 @@ Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent 
 
 ## Changelog
 
+### v0.1.8
+
+- Correction du crash Discord qui pouvait arriver lors de la sauvegarde des réglages ProfileSpoofer.
+- Refonte de l’interface de ProfileSpoofer.
+
 ### v0.1.7
 
 - Ajout de ce changelog.
@@ -160,7 +165,7 @@ Tu penses que ProfileSpoofer est le meilleur spoofer Discord ? [Vote sur la page
 - Certaines fonctions sont encore expérimentales.
 - ProfileSpoofer Network est encore en développement.
 - La gestion des médias personnalisés reste limitée.
-- Enregistrer les réglages ProfileSpoofer peut actuellement faire crash Discord. C’est un problème connu qui sera corrigé plus tard.
+
 
 ## ProfileSpoofer Network
 
