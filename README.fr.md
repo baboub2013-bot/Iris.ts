@@ -1,6 +1,6 @@
 # ProfileSpoofer
 
-![Version](https://img.shields.io/badge/version-v0.1.6-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.7-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -128,6 +128,27 @@ Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent 
 
 - Spoofer de messages Discord officiels *(local uniquement)*
 - Port Android pour Revenge (voir [mobile/](./mobile/))
+
+## Changelog
+
+### v0.1.7
+
+- Ajout de ce changelog.
+
+### v0.1.6
+
+- Spoofer de profil bot local terminé.
+- Ajout des badges d’application natifs **Uses Commands** et **Supports AutoMod**.
+- Ajout de l’aperçu du profil bot et de la page de vote communautaire.
+- Documentation du crash Discord actuel lié à la sauvegarde.
+
+### v0.1.5
+
+- Ajout du spoofer de messages Discord officiels local-only à la roadmap.
+
+### v0.1.4
+
+- Ajout de l’aperçu de profil avec les badges pris en charge.
 
 ## Vote de la communauté
 
