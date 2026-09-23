@@ -1,6 +1,6 @@
 # Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.9-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.10-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -126,10 +126,14 @@ Tous les badges ci-dessous sont affichés uniquement localement. Ils ne donnent 
 
 > **Note :** Toutes les idées « À venir » seront implémentées **avant** la mise à jour téléphone.
 
-- Spoofer de messages Discord officiels *(local uniquement)*
+- Spoofer de messages Discord officiels *(local uniquement)* · <kbd>Abandonné... pour maintenant.</kbd>
 - Port Android pour Revenge (voir [mobile/](./mobile/))
 
 ## Changelog
+
+### v0.1.10
+
+- Spoofer de messages Discord officiels marqué « Abandonné... pour maintenant. »
 
 ### v0.1.9
 

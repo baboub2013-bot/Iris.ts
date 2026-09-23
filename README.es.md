@@ -1,6 +1,6 @@
 # Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.9-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.10-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -126,10 +126,14 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 
 > **Nota:** Todas las ideas de « Próximamente » se implementarán **antes** de la actualización para móvil.
 
-- Spoofer de mensajes oficiales de Discord *(solo local)*
+- Spoofer de mensajes oficiales de Discord *(solo local)* · <kbd>Abandonado... por ahora.</kbd>
 - Port Android para Revenge (ver [mobile/](./mobile/))
 
 ## Registro de cambios
+
+### v0.1.10
+
+- El spoofer local de mensajes oficiales de Discord se marcó como abandonado por ahora.
 
 ### v0.1.9
 
