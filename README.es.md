@@ -1,6 +1,6 @@
 # Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.10-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.11-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -130,6 +130,10 @@ Todas las insignias de abajo se renderizan solo localmente. No conceden insignia
 - Port Android para Revenge (ver [mobile/](./mobile/))
 
 ## Registro de cambios
+
+### v0.1.11
+
+- Se sincronizó la última versión del código de Iris.ts: perfil de bot local, etiquetas de perfil y actualizaciones de interfaz/runtime.
 
 ### v0.1.10
 

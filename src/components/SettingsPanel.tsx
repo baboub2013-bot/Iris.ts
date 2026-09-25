@@ -6,6 +6,7 @@
 
 import { Switch } from "@components/Switch";
 import {
+    Alerts,
     Button,
     FluxDispatcher,
     Forms,
@@ -19,17 +20,36 @@ import {
     useState
 } from "@webpack/common";
 
+import { refreshBotSpoof } from "../botRuntime";
 import {
+    BADGE_FAMILIES,
     badgeIcon,
+    badgeImage as badgeEntryImage,
     BADGES,
     BOOST_TIERS,
+    BOT_BADGES,
     type CustomBadge,
     decorationIcon,
     DECORATIONS,
+    hasTierIcon,
     NITRO_TIERS,
-    parseCustomDate
+    parseCustomDate,
+    tierIcon
 } from "../catalog";
+import {
+    type FakeOfficialMessage,
+    getStoredMessages,
+    isCloneMode,
+    isConversationUnlocked
+} from "../officialMessages";
 import { settings } from "../settings";
+import {
+    getRealProfileTag,
+    getTagBadgeUrl,
+    type ProfileTagIconMode,
+    refreshProfileTag,
+    sanitizeTagIconUrl
+} from "../tagRuntime";
 import {
     disableUnlockAll,
     enableUnlockAll
@@ -37,6 +57,7 @@ import {
 
 type TabId =
     | "profile"
+    | "messages"
     | "badges"
     | "custom"
     | "cosmetics"
@@ -2945,6 +2966,301 @@ export function SettingsPanel() {
         );
     }
 
+    /*
+     * Local fake DM with the official Discord account.
+     * Read-only: the feature is abandoned, the panel only
+     * shows what was stored before.
+     */
+    const [
+        officialDraft,
+        setOfficialDraft
+    ] =
+        useState(
+            ""
+        );
+
+    const officialMessages:
+        FakeOfficialMessage[] =
+        getStoredMessages();
+
+    const officialUnlocked =
+        isConversationUnlocked();
+
+    const officialCloneMode =
+        isCloneMode();
+
+    /*
+     * The feature is abandoned: every control shows this and
+     * does nothing.
+     */
+    function showAbandonedNotice() {
+        Alerts.show({
+            title:
+                "Official Discord Messages — ABANDONED",
+
+            body:
+                "This feature is abandoned: Discord rebuilds the DM list on every resync, so the local conversation could not be kept stable.\n\nYou think you can do it? Make a suggestion at https://github.com/baboub2013-bot/Iris.ts/issues!",
+
+            confirmText:
+                "Got it"
+        });
+    }
+
+    function sendOfficialMessage() {
+        showAbandonedNotice();
+    }
+
+    function deleteOfficialMessage(
+        id: string
+    ) {
+        void id;
+
+        showAbandonedNotice();
+    }
+
+    function clearOfficialMessages() {
+        showAbandonedNotice();
+    }
+
+    function cloneOfficialConversation() {
+        showAbandonedNotice();
+    }
+
+    function toggleOfficialCloneMode(
+        value: boolean
+    ) {
+        void value;
+
+        showAbandonedNotice();
+    }
+
+    function toggleOfficialUnlocked(
+        value: boolean
+    ) {
+        void value;
+
+        showAbandonedNotice();
+    }
+
+    const [
+        botSpoofEnabled,
+        setBotSpoofEnabled
+    ] =
+        useState(
+            settings.store
+                .botSpoofEnabled ??
+            false
+        );
+
+    const [
+        botVerified,
+        setBotVerified
+    ] =
+        useState(
+            settings.store
+                .botVerified ??
+            false
+        );
+
+    const [
+        selectedBotBadges,
+        setSelectedBotBadges
+    ] =
+        useState<string[]>(
+            settings.store
+                .selectedBotBadges ??
+            []
+        );
+
+    function toggleBotBadge(
+        id: string
+    ) {
+        setSelectedBotBadges(
+            current =>
+                current.includes(
+                    id
+                )
+                    ? current.filter(
+                        entry =>
+                            entry !== id
+                    )
+                    : [
+                        ...current,
+                        id
+                    ]
+        );
+    }
+
+    const [
+        botTagName,
+        setBotTagName
+    ] =
+        useState(
+            settings.store
+                .botTagName ??
+            ""
+        );
+
+    const [
+        profileTagEnabled,
+        setProfileTagEnabled
+    ] =
+        useState(
+            settings.store
+                .profileTagEnabled ??
+            false
+        );
+
+    const [
+        profileTagText,
+        setProfileTagText
+    ] =
+        useState(
+            settings.store
+                .profileTagText ??
+            ""
+        );
+
+    const [
+        profileTagGuildId,
+        setProfileTagGuildId
+    ] =
+        useState(
+            settings.store
+                .profileTagGuildId ??
+            ""
+        );
+
+    const [
+        profileTagBadge,
+        setProfileTagBadge
+    ] =
+        useState(
+            settings.store
+                .profileTagBadge ??
+            ""
+        );
+
+    /*
+     * Tiered badge families: selected tier and optional icon
+     * override, keyed by family id.
+     */
+    const [
+        badgeTiers,
+        setBadgeTiers
+    ] =
+        useState<
+            Record<
+                string,
+                string
+            >
+        >(
+            () => {
+                const stored = {
+                    ...(
+                        settings.store
+                            .badgeTiers ??
+                        {}
+                    )
+                };
+
+                if (
+                    !stored.gifting &&
+                    settings.store
+                        .giftingTier
+                ) {
+                    stored.gifting =
+                        settings.store
+                            .giftingTier;
+                }
+
+                return stored;
+            }
+        );
+
+    const [
+        badgeTierIcons,
+        setBadgeTierIcons
+    ] =
+        useState<
+            Record<
+                string,
+                string
+            >
+        >(
+            () => {
+                const stored = {
+                    ...(
+                        settings.store
+                            .badgeTierIcons ??
+                        {}
+                    )
+                };
+
+                if (
+                    !stored.gifting &&
+                    settings.store
+                        .giftingBadgeIconUrl
+                ) {
+                    stored.gifting =
+                        settings.store
+                            .giftingBadgeIconUrl;
+                }
+
+                return stored;
+            }
+        );
+
+    function setFamilyTier(
+        familyId: string,
+        tierId: string
+    ) {
+        setBadgeTiers(
+            current => ({
+                ...current,
+                [familyId]: tierId
+            })
+        );
+    }
+
+    function setFamilyIcon(
+        familyId: string,
+        url: string
+    ) {
+        setBadgeTierIcons(
+            current => ({
+                ...current,
+                [familyId]: url
+            })
+        );
+    }
+
+    const [
+        profileTagIconMode,
+        setProfileTagIconMode
+    ] =
+        useState<ProfileTagIconMode>(
+            settings.store
+                .profileTagIconMode ===
+                "guild" ||
+                settings.store
+                    .profileTagIconMode ===
+                "custom"
+                ? settings.store
+                    .profileTagIconMode
+                : "real"
+        );
+
+    const [
+        profileTagIconUrl,
+        setProfileTagIconUrl
+    ] =
+        useState(
+            settings.store
+                .profileTagIconUrl ??
+            ""
+        );
+
     const [
         replaceRealBadges,
         setReplaceRealBadges
@@ -3152,6 +3468,112 @@ export function SettingsPanel() {
         reader.readAsDataURL(
             file
         );
+    }
+
+    /*
+     * Profile Tag icon upload: stored as a data URL.
+     * Kept small (the icon is displayed at ~16px).
+     */
+    function handleTagImage(
+        file:
+            File |
+            undefined
+    ) {
+        if (
+            !file
+        ) {
+            return;
+        }
+
+        if (
+            !/^image\/(?:png|jpeg|webp|gif)$/.test(
+                file.type
+            )
+        ) {
+            toast(
+                "Please select a PNG, JPEG, WEBP or GIF image."
+            );
+
+            return;
+        }
+
+        if (
+            file.size >
+            256 *
+            1024
+        ) {
+            toast(
+                "Maximum tag icon size: 256 KB."
+            );
+
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            () => {
+                if (
+                    typeof reader.result ===
+                    "string"
+                ) {
+                    setProfileTagIconUrl(
+                        reader.result
+                    );
+
+                    setProfileTagIconMode(
+                        "custom"
+                    );
+                }
+            };
+
+        reader.readAsDataURL(
+            file
+        );
+    }
+
+    function getTagPreviewIcon():
+        string |
+        null {
+        if (
+            profileTagIconMode ===
+            "custom"
+        ) {
+            return sanitizeTagIconUrl(
+                profileTagIconUrl
+            );
+        }
+
+        if (
+            profileTagIconMode ===
+            "guild"
+        ) {
+            const guildId =
+                profileTagGuildId.trim();
+
+            const badge =
+                profileTagBadge.trim();
+
+            return guildId &&
+                badge
+                ? getTagBadgeUrl(
+                    guildId,
+                    badge
+                )
+                : null;
+        }
+
+        const real =
+            getRealProfileTag();
+
+        return real.guildId &&
+            real.badge
+            ? getTagBadgeUrl(
+                real.guildId,
+                real.badge
+            )
+            : null;
     }
 
     function resetBadgeEditor() {
@@ -3430,6 +3852,64 @@ export function SettingsPanel() {
             profileFrame;
 
         settings.store
+            .botSpoofEnabled =
+            botSpoofEnabled;
+
+        settings.store
+            .botVerified =
+            botVerified;
+
+        settings.store
+            .selectedBotBadges =
+            selectedBotBadges;
+
+        settings.store
+            .botTagName =
+            botTagName
+                .trim()
+                .slice(
+                    0,
+                    24
+                );
+
+        settings.store
+            .profileTagEnabled =
+            profileTagEnabled;
+
+        settings.store
+            .profileTagText =
+            profileTagText
+                .trim()
+                .slice(
+                    0,
+                    4
+                );
+
+        settings.store
+            .profileTagGuildId =
+            profileTagGuildId.trim();
+
+        settings.store
+            .profileTagBadge =
+            profileTagBadge.trim();
+
+        settings.store
+            .badgeTiers =
+            badgeTiers;
+
+        settings.store
+            .badgeTierIcons =
+            badgeTierIcons;
+
+        settings.store
+            .profileTagIconMode =
+            profileTagIconMode;
+
+        settings.store
+            .profileTagIconUrl =
+            profileTagIconUrl.trim();
+
+        settings.store
             .replaceRealBadges =
             replaceRealBadges;
 
@@ -3438,6 +3918,32 @@ export function SettingsPanel() {
             debugLogs;
 
         refreshLocalProfile();
+
+        /*
+         * Re-applies the Profile Tag override and forces a
+         * fresh user record so the tag updates right away.
+         */
+        try {
+            refreshBotSpoof();
+        } catch (
+        error
+        ) {
+            console.warn(
+                "[Iris.ts] Bot spoof refresh failed",
+                error
+            );
+        }
+
+        try {
+            refreshProfileTag();
+        } catch (
+        error
+        ) {
+            console.warn(
+                "[Iris.ts] Profile tag refresh failed",
+                error
+            );
+        }
 
         toast(
             "Iris.ts saved."
@@ -3526,6 +4032,18 @@ export function SettingsPanel() {
                     }
                     icon="🎨"
                     label="Cosmetics"
+                    onClick={
+                        setTab
+                    }
+                />
+
+                <Tab
+                    id="messages"
+                    active={
+                        tab
+                    }
+                    icon="💬"
+                    label="Messages (abandoned)"
                     onClick={
                         setTab
                     }
@@ -3688,6 +4206,449 @@ export function SettingsPanel() {
                                 }
                             />
                         </div>
+
+                        <Forms.FormTitle
+                            tag="h3"
+                        >
+                            Bot Profile
+                        </Forms.FormTitle>
+
+                        <div
+                            className="ps-setting-row"
+                        >
+                            <div>
+                                <strong>
+                                    Show As Bot
+                                </strong>
+
+                                <span>
+                                    Shows the BOT tag on your profile. Local only.
+                                </span>
+                            </div>
+
+                            <Switch
+                                checked={
+                                    botSpoofEnabled
+                                }
+
+                                onChange={
+                                    setBotSpoofEnabled
+                                }
+                            />
+                        </div>
+
+                        <div
+                            className="ps-setting-row"
+                        >
+                            <div>
+                                <strong>
+                                    Verified Bot
+                                </strong>
+
+                                <span>
+                                    Adds the check mark.
+                                </span>
+                            </div>
+
+                            <Switch
+                                checked={
+                                    botVerified
+                                }
+
+                                onChange={
+                                    setBotVerified
+                                }
+                            />
+                        </div>
+
+                        <div
+                            className="ps-field"
+                        >
+                            <Forms.FormTitle
+                                tag="h5"
+                            >
+                                Bot Name
+                            </Forms.FormTitle>
+
+                            <TextInput
+                                value={
+                                    botTagName
+                                }
+
+                                onChange={
+                                    setBotTagName
+                                }
+
+                                placeholder="Type here..."
+
+                                maxLength={
+                                    24
+                                }
+                            />
+
+                            <Forms.FormText>
+                                Used in the badge tooltips.
+                            </Forms.FormText>
+                        </div>
+
+                        {botSpoofEnabled && (
+                            <div
+                                className="ps-cosmetic-section"
+                            >
+                                <Forms.FormTitle
+                                    tag="h5"
+                                >
+                                    Bot Badges
+                                </Forms.FormTitle>
+
+                                <div
+                                    className="ps-icon-grid"
+                                >
+                                    {BOT_BADGES.map(
+                                        badge => (
+                                            <button
+                                                key={
+                                                    badge.id
+                                                }
+
+                                                type="button"
+
+                                                className={
+                                                    selectedBotBadges.includes(
+                                                        badge.id
+                                                    )
+                                                        ? "ps-icon-card ps-selected"
+                                                        : "ps-icon-card"
+                                                }
+
+                                                onClick={() =>
+                                                    toggleBotBadge(
+                                                        badge.id
+                                                    )
+                                                }
+                                            >
+                                                <img
+                                                    src={
+                                                        badgeIcon(
+                                                            badge.iconHash
+                                                        )
+                                                    }
+
+                                                    alt=""
+
+                                                    className="ps-badge-icon"
+                                                />
+
+                                                <span>
+                                                    {badge.name}
+                                                </span>
+                                            </button>
+                                        )
+                                    )}
+                                </div>
+
+                                <Forms.FormText>
+                                    User badges are hidden in bot mode.
+                                </Forms.FormText>
+                            </div>
+                        )}
+
+                        <Forms.FormTitle
+                            tag="h3"
+                        >
+                            Profile Tag
+                        </Forms.FormTitle>
+
+                        <div
+                            className="ps-setting-row"
+                        >
+                            <div>
+                                <strong>
+                                    Show Profile Tag
+                                </strong>
+
+                                <span>
+                                    Shows a tag next to your name. Local only.
+                                </span>
+                            </div>
+
+                            <Switch
+                                checked={
+                                    profileTagEnabled
+                                }
+
+                                onChange={
+                                    setProfileTagEnabled
+                                }
+                            />
+                        </div>
+
+                        <div
+                            className="ps-custom-editor"
+                        >
+                            <div
+                                className="ps-upload-preview"
+                            >
+                                <span
+                                    style={{
+                                        display:
+                                            "inline-flex",
+
+                                        alignItems:
+                                            "center",
+
+                                        gap:
+                                            "4px",
+
+                                        padding:
+                                            "2px 6px",
+
+                                        borderRadius:
+                                            "4px",
+
+                                        background:
+                                            "var(--background-modifier-accent)",
+
+                                        fontSize:
+                                            "12px",
+
+                                        fontWeight:
+                                            700,
+
+                                        color:
+                                            "var(--header-primary)",
+
+                                        whiteSpace:
+                                            "nowrap"
+                                    }}
+                                >
+                                    {getTagPreviewIcon() && (
+                                        <img
+                                            src={
+                                                getTagPreviewIcon() ??
+                                                ""
+                                            }
+
+                                            alt=""
+
+                                            style={{
+                                                width:
+                                                    "14px",
+
+                                                height:
+                                                    "14px",
+
+                                                objectFit:
+                                                    "contain"
+                                            }}
+                                        />
+                                    )}
+
+                                    {profileTagText
+                                        .trim()
+                                        .slice(
+                                            0,
+                                            4
+                                        ) ||
+                                        "TAG"}
+                                </span>
+                            </div>
+
+                            <div
+                                className="ps-field"
+                            >
+                                <Forms.FormTitle
+                                    tag="h5"
+                                >
+                                    Tag Text
+                                </Forms.FormTitle>
+
+                                <TextInput
+                                    value={
+                                        profileTagText
+                                    }
+
+                                    onChange={
+                                        setProfileTagText
+                                    }
+
+                                    placeholder="Type here..."
+
+                                    maxLength={
+                                        4
+                                    }
+                                />
+                            </div>
+                        </div>
+
+                        <Forms.FormTitle
+                            tag="h5"
+                        >
+                            Tag Icon
+                        </Forms.FormTitle>
+
+                        <div
+                            className="ps-tabs"
+                        >
+                            {(
+                                [
+                                    [
+                                        "real",
+                                        "My real icon"
+                                    ],
+                                    [
+                                        "guild",
+                                        "Server icon"
+                                    ],
+                                    [
+                                        "custom",
+                                        "Custom image"
+                                    ]
+                                ] as Array<[
+                                    ProfileTagIconMode,
+                                    string
+                                ]>
+                            ).map(
+                                (
+                                    [
+                                        mode,
+                                        label
+                                    ]
+                                ) => (
+                                    <button
+                                        key={
+                                            mode
+                                        }
+
+                                        type="button"
+
+                                        className={
+                                            profileTagIconMode ===
+                                                mode
+                                                ? "ps-tab ps-tab-active"
+                                                : "ps-tab"
+                                        }
+
+                                        onClick={() =>
+                                            setProfileTagIconMode(
+                                                mode
+                                            )
+                                        }
+                                    >
+                                        {label}
+                                    </button>
+                                )
+                            )}
+                        </div>
+
+                        {profileTagIconMode ===
+                            "guild" && (
+                                <div
+                                    className="ps-two-columns"
+                                >
+                                    <div
+                                        className="ps-field"
+                                    >
+                                        <Forms.FormTitle
+                                            tag="h5"
+                                        >
+                                            Server (Guild) ID
+                                        </Forms.FormTitle>
+
+                                        <TextInput
+                                            value={
+                                                profileTagGuildId
+                                            }
+
+                                            onChange={
+                                                setProfileTagGuildId
+                                            }
+
+                                            placeholder="Type here..."
+                                        />
+                                    </div>
+
+                                    <div
+                                        className="ps-field"
+                                    >
+                                        <Forms.FormTitle
+                                            tag="h5"
+                                        >
+                                            Badge Hash
+                                        </Forms.FormTitle>
+
+                                        <TextInput
+                                            value={
+                                                profileTagBadge
+                                            }
+
+                                            onChange={
+                                                setProfileTagBadge
+                                            }
+
+                                            placeholder="Type here..."
+                                        />
+                                    </div>
+                                </div>
+                            )}
+
+                        {profileTagIconMode ===
+                            "custom" && (
+                                <div
+                                    className="ps-custom-fields"
+                                >
+                                    <TextInput
+                                        value={
+                                            profileTagIconUrl.startsWith(
+                                                "data:"
+                                            )
+                                                ? "Uploaded image"
+                                                : profileTagIconUrl
+                                        }
+
+                                        onChange={
+                                            setProfileTagIconUrl
+                                        }
+
+                                        placeholder="Image URL"
+                                    />
+
+                                    <label
+                                        className="ps-discord-button ps-upload-button"
+                                    >
+                                        Upload Image
+
+                                        <input
+                                            type="file"
+
+                                            accept="image/png,image/jpeg,image/webp,image/gif"
+
+                                            onChange={
+                                                event =>
+                                                    handleTagImage(
+                                                        event
+                                                            .currentTarget
+                                                            .files?.[0]
+                                                    )
+                                            }
+                                        />
+                                    </label>
+                                </div>
+                            )}
+
+                        <Forms.FormText>
+                            {profileTagIconMode ===
+                                "custom" &&
+                                profileTagIconUrl.trim() &&
+                                !profileTagIconUrl.startsWith(
+                                    "data:"
+                                ) &&
+                                !sanitizeTagIconUrl(
+                                    profileTagIconUrl
+                                )
+                                ? "Invalid URL."
+                                : "4 characters max."}
+                        </Forms.FormText>
                     </div>
                 )}
 
@@ -3737,8 +4698,8 @@ export function SettingsPanel() {
                                     >
                                         <img
                                             src={
-                                                badgeIcon(
-                                                    badge.iconHash
+                                                badgeEntryImage(
+                                                    badge
                                                 )
                                             }
 
@@ -3754,6 +4715,118 @@ export function SettingsPanel() {
                                 )
                             )}
                         </div>
+
+                        {BADGE_FAMILIES.map(
+                            family => (
+                                <div
+                                    key={
+                                        family.id
+                                    }
+
+                                    className="ps-cosmetic-section"
+                                >
+                                    <Forms.FormTitle
+                                        tag="h3"
+                                    >
+                                        {family.name}
+                                    </Forms.FormTitle>
+
+                                    <div
+                                        className="ps-icon-grid"
+                                    >
+                                        {family.tiers.map(
+                                            tier => (
+                                                <button
+                                                    key={
+                                                        tier.id
+                                                    }
+
+                                                    type="button"
+
+                                                    className={
+                                                        (
+                                                            badgeTiers[family.id] ??
+                                                            "none"
+                                                        ) ===
+                                                            tier.id
+
+                                                            ? "ps-icon-card ps-selected"
+
+                                                            : "ps-icon-card"
+                                                    }
+
+                                                    onClick={() =>
+                                                        setFamilyTier(
+                                                            family.id,
+                                                            tier.id
+                                                        )
+                                                    }
+                                                >
+                                                    {hasTierIcon(
+                                                        tier,
+                                                        (
+                                                            badgeTiers[family.id] ??
+                                                            "none"
+                                                        ) ===
+                                                            tier.id
+                                                            ? badgeTierIcons[family.id]
+                                                            : ""
+                                                    ) ? (
+                                                        <img
+                                                            src={
+                                                                tierIcon(
+                                                                    tier,
+                                                                    (
+                                                                        badgeTiers[family.id] ??
+                                                                        "none"
+                                                                    ) ===
+                                                                        tier.id
+                                                                        ? badgeTierIcons[family.id]
+                                                                        : ""
+                                                                )
+                                                            }
+
+                                                            alt=""
+
+                                                            className="ps-badge-icon"
+                                                        />
+                                                    ) : (
+                                                        <div
+                                                            className="ps-empty-icon"
+                                                        >
+                                                            —
+                                                        </div>
+                                                    )}
+
+                                                    <span>
+                                                        {tier.name}
+                                                    </span>
+                                                </button>
+                                            )
+                                        )}
+                                    </div>
+
+                                    <TextInput
+                                        value={
+                                            badgeTierIcons[family.id] ??
+                                            ""
+                                        }
+
+                                        onChange={
+                                            (
+                                                value: string
+                                            ) =>
+                                                setFamilyIcon(
+                                                    family.id,
+                                                    value
+                                                )
+                                        }
+
+                                        placeholder="Custom icon URL (optional)"
+                                    />
+                                </div>
+                            )
+                        )}
 
                         <Forms.FormTitle
                             tag="h3"
@@ -3842,8 +4915,8 @@ export function SettingsPanel() {
                                     !parseCustomDate(
                                         nitroSinceDate
                                     )
-                                    ? "Invalid date: the automatic date will be used."
-                                    : "Date shown in the Nitro badge tooltip, e.g. Sep 19, 2020 or 2020-09-19. Leave empty for automatic."}
+                                    ? "Invalid date, using the automatic one."
+                                    : "Empty = automatic. Example: Sep 19, 2020"}
                             </Forms.FormText>
                         </div>
 
@@ -3856,7 +4929,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    Off: Discord's native Nitro card on your profile (tier art, "Subscriber since" date). On: plain tooltip only.
+                                    Plain tooltip instead of Discord's card.
                                 </span>
                             </div>
 
@@ -3990,7 +5063,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    User-provided custom badges can contain NSFW, gore or other unwanted imagery. This filter is for shared-profile support and keeps other users' custom images hidden while yours remain visible.
+                                    Other users' images may be NSFW. Yours stay visible.
                                 </span>
                             </div>
 
@@ -4368,6 +5441,232 @@ export function SettingsPanel() {
                 )}
 
             {tab ===
+                "messages" && (
+                    <div
+                        className="ps-panel"
+                    >
+                        <Forms.FormTitle
+                            tag="h3"
+                        >
+                            Official Discord Messages
+
+                            <span
+                                className="ps-tag-abandoned"
+                            >
+                                ABANDONED
+                            </span>
+                        </Forms.FormTitle>
+
+                        <Forms.FormText>
+                            Discord rebuilds the DM list on every resync, so the local conversation could not be kept stable. The controls below are disabled.
+                        </Forms.FormText>
+
+                        <div
+                            className="ps-field"
+                        >
+                            <Forms.FormTitle
+                                tag="h5"
+                            >
+                                New Message From Discord
+                            </Forms.FormTitle>
+
+                            <TextArea
+                                value={
+                                    officialDraft
+                                }
+
+                                onChange={
+                                    setOfficialDraft
+                                }
+
+                                placeholder="Type here..."
+
+                                rows={
+                                    3
+                                }
+                            />
+                        </div>
+
+                        <div
+                            className="ps-editor-buttons"
+                        >
+                            <Button
+                                size={
+                                    Button
+                                        .Sizes
+                                        .SMALL
+                                }
+
+                                color={
+                                    Button
+                                        .Colors
+                                        .BRAND
+                                }
+
+                                onClick={
+                                    sendOfficialMessage
+                                }
+                            >
+                                Add Message
+                            </Button>
+
+                            <Button
+                                size={
+                                    Button
+                                        .Sizes
+                                        .SMALL
+                                }
+
+                                color={
+                                    Button
+                                        .Colors
+                                        .PRIMARY
+                                }
+
+                                onClick={
+                                    clearOfficialMessages
+                                }
+                            >
+                                Clear All
+                            </Button>
+                        </div>
+
+                        <div
+                            className="ps-setting-row"
+                        >
+                            <div>
+                                <strong>
+                                    Clone Mode
+                                </strong>
+
+                                <span>
+                                    Works in a local copy. Your real DM with Discord is never touched.
+                                </span>
+                            </div>
+
+                            <Switch
+                                checked={
+                                    officialCloneMode
+                                }
+
+                                onChange={
+                                    toggleOfficialCloneMode
+                                }
+                            />
+                        </div>
+
+                        {officialCloneMode && (
+                            <div
+                                className="ps-editor-buttons"
+                            >
+                                <Button
+                                    size={
+                                        Button
+                                            .Sizes
+                                            .SMALL
+                                    }
+
+                                    color={
+                                        Button
+                                            .Colors
+                                            .PRIMARY
+                                    }
+
+                                    onClick={
+                                        cloneOfficialConversation
+                                    }
+                                >
+                                    Copy Real Messages
+                                </Button>
+                            </div>
+                        )}
+
+                        <div
+                            className="ps-setting-row"
+                        >
+                            <div>
+                                <strong>
+                                    Unlock Conversation
+                                </strong>
+
+                                <span>
+                                    Lets you type in it locally. Messages never leave your client.
+                                </span>
+                            </div>
+
+                            <Switch
+                                checked={
+                                    officialUnlocked
+                                }
+
+                                onChange={
+                                    toggleOfficialUnlocked
+                                }
+                            />
+                        </div>
+
+                        <Forms.FormTitle
+                            tag="h5"
+                        >
+                            {`Local Messages (${officialMessages.length})`}
+                        </Forms.FormTitle>
+
+                        {officialMessages.length ===
+                            0 ? (
+                            <Forms.FormText>
+                                No local message yet.
+                            </Forms.FormText>
+                        ) : (
+                            <div
+                                className="ps-custom-list"
+                            >
+                                {officialMessages.map(
+                                    message => (
+                                        <div
+                                            key={
+                                                message.id
+                                            }
+
+                                            className="ps-custom-badge"
+                                        >
+                                            <span>
+                                                {`${message.fromSelf ? "You" : "Discord"}: ${message.content}`}
+                                            </span>
+
+                                            <Button
+                                                size={
+                                                    Button
+                                                        .Sizes
+                                                        .MIN
+                                                }
+
+                                                color={
+                                                    Button
+                                                        .Colors
+                                                        .RED
+                                                }
+
+                                                onClick={() =>
+                                                    deleteOfficialMessage(
+                                                        message.id
+                                                    )
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        )}
+
+                        <Forms.FormText>
+                            You think you can do it? Make a suggestion at https://github.com/baboub2013-bot/Iris.ts/issues!
+                        </Forms.FormText>
+                    </div>
+                )}
+
+            {tab ===
                 "advanced" && (
                     <div
                         className="ps-panel"
@@ -4381,7 +5680,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    Unlock every decoration, nameplate, effect and frame locally in Discord's own profile settings. Cosmetics saved there stay local and are never sent to Discord.
+                                    Unlocks everything in Discord's own shop. Stays local.
                                 </span>
                             </div>
 
@@ -4405,7 +5704,7 @@ export function SettingsPanel() {
                                 </strong>
 
                                 <span>
-                                    Hide Discord's native badge list and keep your local Iris.ts badges.
+                                    Hides your real badges.
                                 </span>
                             </div>
 

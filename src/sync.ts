@@ -6,7 +6,7 @@
 
 import { settings } from "./settings";
 
-export const IRIS_API =
+export const PROFILE_SPOOFER_API =
     "https://profilespoofer-sync.babou-b-2013.workers.dev";
 
 const POLL_MS = 2_000;
@@ -227,7 +227,7 @@ function debug(
             .debugLogs
     ) {
         console.info(
-            "[Iris Network]",
+            "[Iris.ts Network]",
             ...args
         );
     }
@@ -347,7 +347,7 @@ async function ensureNetworkAccess() {
         ) {
             const allowed =
                 await csp.isDomainAllowed(
-                    IRIS_API,
+                    PROFILE_SPOOFER_API,
                     [
                         "connect-src"
                     ]
@@ -379,7 +379,7 @@ async function ensureNetworkAccess() {
             "function"
         ) {
             await csp.requestAddOverride(
-                IRIS_API,
+                PROFILE_SPOOFER_API,
                 [
                     "connect-src"
                 ],
@@ -393,7 +393,7 @@ async function ensureNetworkAccess() {
         ) {
             const allowedAfter =
                 await csp.isDomainAllowed(
-                    IRIS_API,
+                    PROFILE_SPOOFER_API,
                     [
                         "connect-src"
                     ]
@@ -447,7 +447,7 @@ async function apiFetch(
     await ensureNetworkAccess();
 
     return fetch(
-        IRIS_API +
+        PROFILE_SPOOFER_API +
         path,
         init
     );

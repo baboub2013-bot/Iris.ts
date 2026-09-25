@@ -19,6 +19,7 @@ import virtualMerge from "virtual-merge";
 
 import {
     badgeIcon,
+    badgeImage,
     BADGES,
     BOOST_TIERS,
     DECORATIONS,
@@ -88,7 +89,7 @@ const COLLECTIBLES_PATH =
     "/assets/collectibles/";
 
 const NETWORK_DECORATION_PREFIX =
-    "iris-network-";
+    "profile-spoofer-network-";
 
 const DEFAULT_NAMEPLATE_PALETTE =
     "cobalt";
@@ -171,7 +172,7 @@ const NAMEPLATE_PALETTES:
     none: {
         darkBackground: "#5865F2",
         lightBackground: "#7983F5",
-        name: "iris"
+        name: "profile-spoofer"
     }
 };
 
@@ -342,7 +343,7 @@ function buildRemoteBadges(
 
         result.push({
             id:
-                `iris-network-${userId}-${id}-${index++}`,
+                `profile-spoofer-network-${userId}-${id}-${index++}`,
 
             description:
                 badgeDescription(
@@ -351,8 +352,8 @@ function buildRemoteBadges(
                 ),
 
             iconSrc:
-                badgeIcon(
-                    badge.iconHash
+                badgeImage(
+                    badge
                 ),
 
             position:
@@ -383,7 +384,7 @@ function buildRemoteBadges(
     ) {
         result.push({
             id:
-                `iris-network-${userId}-boost-${index++}`,
+                `profile-spoofer-network-${userId}-boost-${index++}`,
 
             description:
                 `Server Booster (${boost.name})`,
@@ -410,7 +411,7 @@ export function registerNetworkBadgeProvider() {
 
     networkBadgeProvider = {
         id:
-            "iris-network-provider",
+            "profile-spoofer-network-provider",
 
         getBadges({
             userId

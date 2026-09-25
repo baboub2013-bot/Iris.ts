@@ -1,6 +1,6 @@
 # Iris.ts
 
-![Version](https://img.shields.io/badge/version-v0.1.10-5865F2?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.1.11-5865F2?style=flat-square)
 
 <p align="right">
   <a href="./README.md"><img src="https://flagcdn.com/w20/gb.png" width="20" height="15" alt="English"></a>
@@ -132,6 +132,10 @@ All badges below are rendered locally only. They do not grant real Discord badge
 - Android mobile port for Revenge (see [mobile/](./mobile/))
 
 ## Changelog
+
+### v0.1.11
+
+- Synced the latest Iris.ts plugin source: local bot profile, profile tags, and UI/runtime updates.
 
 ### v0.1.10
 

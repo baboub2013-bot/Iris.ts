@@ -29,7 +29,7 @@
 .ps-root {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
 }
 
 .ps-header,
@@ -65,9 +65,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    min-height: 32px;
-    padding: 0 10px;
+    gap: 6px;
+    min-height: 38px;
+    padding: 0 16px;
     border: 0;
     border-radius: 4px;
     background: transparent;
@@ -103,10 +103,10 @@
 .ps-panel {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 10px;
+    gap: 16px;
+    padding: 20px;
     border: 1px solid var(--background-modifier-accent);
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--background-secondary);
     animation: ps-panel-enter 160ms cubic-bezier(0.2, 0.7, 0.3, 1);
 }
@@ -114,19 +114,19 @@
 .ps-two-columns {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: 12px;
 }
 
 .ps-field {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 6px;
 }
 
 .ps-icon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    gap: 8px;
 }
 
 .ps-icon-card,
@@ -135,9 +135,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 8px;
     border: 1px solid var(--background-modifier-accent);
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--background-tertiary);
     color: var(--text-normal);
     cursor: pointer;
@@ -149,8 +149,8 @@
 }
 
 .ps-icon-card {
-    min-height: 62px;
-    padding: 6px 4px;
+    min-height: 82px;
+    padding: 12px 8px;
 }
 
 .ps-icon-card:hover,
@@ -173,8 +173,8 @@
 
 .ps-badge-icon,
 .ps-empty-icon {
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
 }
 
@@ -191,13 +191,13 @@
 .ps-cosmetic-section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .ps-decoration-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 8px;
     max-height: 390px;
     padding-right: 5px;
     overflow-x: hidden;
@@ -251,15 +251,23 @@
     object-fit: contain;
 }
 
+/*
+ * Card labels wrap on two lines instead of being cut off
+ * ("Uses Comma..." was unreadable).
+ */
 .ps-decoration-card > span,
 .ps-icon-card > span {
+    display: -webkit-box;
     width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    word-break: break-word;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
+    line-height: 15px;
 }
 
 .ps-switch-inline {
@@ -275,8 +283,8 @@
     display: grid;
     grid-template-columns: 32px minmax(0, 1fr) auto;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
+    gap: 12px;
+    padding: 14px 16px;
     border: 1px solid var(--background-modifier-accent);
     border-radius: 8px;
     background: var(--background-tertiary);
@@ -531,4 +539,89 @@
     .ps-safety-card {
         grid-template-columns: 32px minmax(0, 1fr);
     }
+}
+
+/*
+ * =====================================================
+ * SECTION HIERARCHY
+ * =====================================================
+ *
+ * Section titles read as section titles, helper texts stay
+ * out of the way, and every block has room to breathe.
+ */
+
+.ps-panel h3 {
+    margin: 8px 0 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--background-modifier-accent);
+    color: var(--header-primary);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.ps-panel h3:first-child {
+    margin-top: 0;
+}
+
+.ps-panel h5 {
+    margin-bottom: 0;
+    color: var(--header-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+/*
+ * Helper text under a field: quiet, never louder than the
+ * control it explains.
+ */
+.ps-field > [class*="description"],
+.ps-cosmetic-section > [class*="description"] {
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/*
+ * Toggle rows: roomy, with a clear hover target.
+ */
+.ps-panel .ps-setting-row {
+    min-height: 56px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: background-color 120ms ease;
+}
+
+.ps-panel .ps-setting-row:hover {
+    background: var(--background-modifier-hover);
+}
+
+.ps-setting-row strong {
+    font-size: 15px;
+}
+
+.ps-setting-row span {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+
+/*
+ * Tag for abandoned features: visible, not alarming.
+ */
+.ps-tag-abandoned {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--status-danger-background, #f23f43);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
 }

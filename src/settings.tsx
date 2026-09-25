@@ -30,6 +30,49 @@ export const settings = definePluginSettings({
     spoofAccountCreationDate?: string;
 
     selectedBadges?: string[];
+
+    /*
+     * Local fake DM with the official Discord account.
+     */
+    officialMessages?: Array<{
+        id: string;
+        fromSelf: boolean;
+        content: string;
+        timestamp: number;
+    }>;
+    officialChannelId?: string;
+    officialUnlocked?: boolean;
+
+    /*
+     * true (default): everything happens in a local copy of
+     * the official DM, the real one is never touched.
+     */
+    officialCloneMode?: boolean;
+
+    /*
+     * Local bot spoofer: show my own profile as a bot,
+     * with an optional verified variant and a tag name used
+     * in the local Bot badge tooltip.
+     */
+    botSpoofEnabled?: boolean;
+    botVerified?: boolean;
+    botTagName?: string;
+    selectedBotBadges?: string[];
+
+    /*
+     * Tiered badge families (Gifting, Game Variety...):
+     * selected tier per family id, plus an optional icon
+     * override per family.
+     */
+    badgeTiers?: Record<string, string>;
+    badgeTierIcons?: Record<string, string>;
+
+    /*
+     * Old single-family settings, still read once so an
+     * existing Gifting selection is not lost.
+     */
+    giftingTier?: string;
+    giftingBadgeIconUrl?: string;
     nitroTier?: string;
 
     /*
@@ -54,6 +97,22 @@ export const settings = definePluginSettings({
     profileEffect?: string;
     nameplate?: string;
     profileFrame?: string;
+
+    /*
+     * Profile Tag (local server tag next to your name).
+     */
+    profileTagEnabled?: boolean;
+    profileTagText?: string;
+    profileTagGuildId?: string;
+    profileTagBadge?: string;
+
+    /*
+     * Tag icon: "real" (your real tag icon), "guild" (any
+     * server tag icon: guild id + badge hash) or "custom"
+     * (image URL / uploaded data URL).
+     */
+    profileTagIconMode?: string;
+    profileTagIconUrl?: string;
 
     replaceRealBadges?: boolean;
     debugLogs?: boolean;

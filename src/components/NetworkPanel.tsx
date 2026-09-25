@@ -70,7 +70,7 @@ function friendlyError(
         value ===
         "oauth_not_configured"
     ) {
-        return "The Iris Network backend OAuth configuration is incomplete.";
+        return "The Iris.ts backend OAuth configuration is incomplete.";
     }
 
     if (
@@ -84,7 +84,7 @@ function friendlyError(
         value ===
         "Failed to fetch"
     ) {
-        return "Could not reach the Iris Network backend. Check Vencord network permission and restart Discord.";
+        return "Could not reach the Iris.ts backend. Check Vencord network permission and restart Discord.";
     }
 
     return (
@@ -157,7 +157,7 @@ export function NetworkPanel() {
             await beginNetworkLogin();
 
             toast(
-                "Iris Network connected."
+                "Iris.ts Network connected."
             );
         } catch (
         error
@@ -361,7 +361,7 @@ export function NetworkPanel() {
                     <Forms.FormTitle
                         tag="h3"
                     >
-                        Iris Network
+                        Iris.ts Network
                     </Forms.FormTitle>
 
                     <Forms.FormText>
@@ -421,7 +421,7 @@ export function NetworkPanel() {
                     </strong>
 
                     <span>
-                        OAuth uses only an Iris Network backend session. Your Discord token, password and cookies are never sent to the Iris Network backend.
+                        OAuth uses only a Iris.ts backend session. Your Discord token, password and cookies are never sent to the Iris.ts backend.
                     </span>
                 </div>
             </div>

@@ -8,6 +8,10 @@ import definePlugin from "@utils/types";
 import { UserStore } from "@webpack/common";
 
 import {
+    installBotSpoofOverride,
+    uninstallBotSpoofOverride
+} from "./botRuntime";
+import {
     clearNetworkBadgeProvider,
     getNetworkAvatarDecorationForUser,
     getNetworkAvatarDecorationURL,
@@ -18,6 +22,11 @@ import {
     startNetworkRendering,
     stopNetworkRendering
 } from "./networkRuntime";
+import {
+    enqueueMessageHook,
+    installOfficialMessages,
+    uninstallOfficialMessages
+} from "./officialMessages";
 import {
     applyProfileChanges,
     clearBadgeProvider,
@@ -43,6 +52,10 @@ import {
     syncOwnProfileIfNeeded
 } from "./sync";
 import {
+    installProfileTagOverride,
+    uninstallProfileTagOverride
+} from "./tagRuntime";
+import {
     disableUnlockAll,
     enableUnlockAll
 } from "./unlockAll";
@@ -67,14 +80,14 @@ function isOwnUser(
 }
 
 export default definePlugin({
-    name: "Iris.ts",
+    name: "Iris",
 
     description:
         "Locally customise and spoof Discord profile elements.",
 
     authors: [
         {
-            name: "Babou",
+            name: "Iris",
             id: 0n
         }
     ],
@@ -225,6 +238,30 @@ export default definePlugin({
 
         {
             /*
+             * Send queue for the composer.
+             *
+             *   log("Queueing message to be sent LogId:...")
+             *   queue.enqueue(payload, callback)
+             *
+             * Wrapped so a message typed in the local Discord
+             * conversation never enters the queue, and is
+             * confirmed locally instead. Every other channel
+             * is enqueued untouched.
+             */
+            find:
+                "Queueing message to be sent",
+
+            replacement: {
+                match:
+                    /(\i\.info\(`Queueing message to be sent LogId:\$\{\i\}`\),)(\i\.\i)\.enqueue\((\i),/,
+
+                replace:
+                    "$1$self.enqueueMessageHook($2,$3,"
+            }
+        },
+
+        {
+            /*
              * Discord's Xb(): start date of the current user's
              * Nitro subscription, shown in the native Nitro card.
              * Reads the REAL subscription first:
@@ -283,6 +320,21 @@ export default definePlugin({
 
         installNameplateOverrides();
 
+        /*
+         * Profile Tag: own user record only.
+         */
+        installProfileTagOverride();
+
+        /*
+         * Local bot spoofer: own user record only.
+         */
+        installBotSpoofOverride();
+
+        /*
+         * Local fake DM with the official Discord account.
+         */
+        installOfficialMessages();
+
         startNetworkRendering();
 
         startNetworkSync();
@@ -316,6 +368,12 @@ export default definePlugin({
         uninstallCreationDateOverride();
 
         uninstallNameplateOverrides();
+
+        uninstallProfileTagOverride();
+
+        uninstallBotSpoofOverride();
+
+        uninstallOfficialMessages();
 
         disableUnlockAll();
 
@@ -450,6 +508,8 @@ export default definePlugin({
             data
         );
     },
+
+    enqueueMessageHook,
 
     getNitroSinceHook,
 

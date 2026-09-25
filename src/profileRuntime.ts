@@ -23,12 +23,17 @@ import {
 import virtualMerge from "virtual-merge";
 
 import {
+    BADGE_FAMILIES,
     badgeIcon,
+    badgeImage,
     BADGES,
     BOOST_TIERS,
     DECORATIONS,
+    getBotBadges,
     getNativeNitroBadge,
     getNitroSince,
+    hasTierIcon,
+    tierIcon,
     withNativeNitroBadge
 } from "./catalog";
 import { settings } from "./settings";
@@ -166,6 +171,7 @@ const BADGE_DESCRIPTIONS:
 
     orbs_apprentice:
         "Collected the Orb Profile Badge"
+
 };
 
 const BOOST_META:
@@ -316,6 +322,72 @@ function monthsAgo(
  * =====================================================
  */
 
+/*
+ * Selected tier of a badge family. Falls back to the old
+ * single-family Gifting settings so nothing is lost.
+ */
+export function getSelectedTierId(
+    familyId:
+        string
+):
+    string {
+    const stored =
+        settings.store
+            .badgeTiers
+        ?.[familyId];
+
+    if (
+        typeof stored ===
+        "string" &&
+        stored
+    ) {
+        return stored;
+    }
+
+    if (
+        familyId ===
+        "gifting"
+    ) {
+        return settings.store
+            .giftingTier ??
+            "none";
+    }
+
+    return "none";
+}
+
+export function getTierIconOverride(
+    familyId:
+        string
+):
+    string {
+    const stored =
+        settings.store
+            .badgeTierIcons
+        ?.[familyId];
+
+    if (
+        typeof stored ===
+        "string" &&
+        stored.trim()
+    ) {
+        return stored.trim();
+    }
+
+    if (
+        familyId ===
+        "gifting"
+    ) {
+        return (
+            settings.store
+                .giftingBadgeIconUrl ??
+            ""
+        ).trim();
+    }
+
+    return "";
+}
+
 function buildBadges():
     ProfileBadge[] {
     const result:
@@ -351,7 +423,7 @@ function buildBadges():
 
             result.push({
                 id:
-                    `iris-custom-${badge.id}-${index++}`,
+                    `profile-spoofer-custom-${badge.id}-${index++}`,
 
                 description:
                     badge.tooltip
@@ -376,6 +448,19 @@ function buildBadges():
                 }
             });
         }
+    }
+
+    /*
+     * Bot mode: a bot carries no user badge. The bot badges
+     * themselves are injected into profile.badges by
+     * patchUserProfile, not here.
+     */
+    if (
+        settings.store
+            .botSpoofEnabled ===
+        true
+    ) {
+        return result;
     }
 
     /*
@@ -405,7 +490,7 @@ function buildBadges():
 
         result.push({
             id:
-                `iris-${id}-${index++}`,
+                `profile-spoofer-${id}-${index++}`,
 
             description:
                 badgeDescription(
@@ -413,8 +498,8 @@ function buildBadges():
                 ),
 
             iconSrc:
-                badgeIcon(
-                    badge.iconHash
+                badgeImage(
+                    badge
                 ),
 
             position:
@@ -426,6 +511,65 @@ function buildBadges():
      * Nitro badge: injected as a REAL Discord badge in
      * patchUserProfile (native hover card), not here.
      */
+
+    /*
+     * Tiered badge families (Gifting, Game Variety...).
+     * One badge per family, for the selected tier.
+     */
+    for (
+        const family
+        of BADGE_FAMILIES
+    ) {
+        const selected =
+            getSelectedTierId(
+                family.id
+            );
+
+        if (
+            selected ===
+            "none"
+        ) {
+            continue;
+        }
+
+        const tier =
+            family.tiers.find(
+                entry =>
+                    entry.id ===
+                    selected
+            );
+
+        if (
+            !tier ||
+            !hasTierIcon(
+                tier,
+                getTierIconOverride(
+                    family.id
+                )
+            )
+        ) {
+            continue;
+        }
+
+        result.push({
+            id:
+                `profile-spoofer-${family.id}-${index++}`,
+
+            description:
+                `${family.label} ${tier.name}`,
+
+            iconSrc:
+                tierIcon(
+                    tier,
+                    getTierIconOverride(
+                        family.id
+                    )
+                ),
+
+            position:
+                BadgePosition.START
+        });
+    }
 
     /*
      * Booster badge.
@@ -449,7 +593,7 @@ function buildBadges():
     ) {
         result.push({
             id:
-                `iris-boost-${index++}`,
+                `profile-spoofer-boost-${index++}`,
 
             description:
                 `Server Booster (${boost.name})`,
@@ -482,7 +626,7 @@ export function registerBadgeProvider() {
 
     badgeProvider = {
         id:
-            "iris-provider",
+            "profile-spoofer-provider",
 
         getBadges({
             userId
@@ -558,7 +702,7 @@ function getAvatarDecorationOverride():
                     unlockedAsset,
 
                 skuId:
-                    "iris-unlocked",
+                    "profile-spoofer-unlocked",
 
                 expires_at:
                     null
@@ -586,7 +730,7 @@ function getAvatarDecorationOverride():
             decoration.asset,
 
         skuId:
-            `iris-${decoration.id}`,
+            `profile-spoofer-${decoration.id}`,
 
         expires_at:
             null
@@ -636,7 +780,7 @@ export function getAvatarDecorationURL(
     if (
         !decoration?.skuId
             ?.startsWith(
-                "iris-"
+                "profile-spoofer-"
             )
     ) {
         return undefined;
@@ -788,7 +932,7 @@ const NAMEPLATE_PALETTES:
     none: {
         darkBackground: "#5865F2",
         lightBackground: "#7983F5",
-        name: "iris"
+        name: "profile-spoofer"
     }
 };
 
@@ -1810,7 +1954,7 @@ function emitNameplateChanges() {
  * UserStore. Self only; every step is checked and
  * reverted if anything looks wrong.
  */
-function refreshSelfUserRecord() {
+export function refreshSelfUserRecord() {
     try {
         const store =
             UserStore as unknown as {
@@ -1861,18 +2005,61 @@ function refreshSelfUserRecord() {
             return;
         }
 
+        /*
+         * Full copy: every own property descriptor, not just
+         * the enumerable ones.
+         *
+         * Object.assign only copies enumerable properties, and
+         * Discord defines isStaff / hasFlag / hasAnyStaffLevel
+         * as NON-enumerable own properties: the copy came out
+         * without them and every Save crashed with
+         * "e.isStaff is not a function".
+         */
         const clone =
-            Object.assign(
-                Object.create(
-                    Object.getPrototypeOf(
-                        current
-                    )
+            Object.create(
+                Object.getPrototypeOf(
+                    current
                 ),
-                current
+
+                Object.getOwnPropertyDescriptors(
+                    current
+                )
             ) as Record<
                 string,
                 unknown
             >;
+
+        /*
+         * Sanity check: a copy that lost its methods must
+         * never reach UserStore.
+         */
+        for (
+            const method
+            of [
+                "isStaff",
+                "hasFlag",
+                "hasAnyStaffLevel",
+                "getAvatarURL"
+            ]
+        ) {
+            if (
+                typeof current[method] ===
+                "function" &&
+                typeof clone[method] !==
+                "function"
+            ) {
+                if (
+                    settings.store
+                        .debugLogs
+                ) {
+                    console.warn(
+                        `[Iris.ts] Record refresh aborted: ${method} missing on the copy`
+                    );
+                }
+
+                return;
+            }
+        }
 
         /*
          * Object.assign copied my collectibles getter as a
@@ -2505,9 +2692,42 @@ export function patchUserProfile(
             .nitroTier ??
         "none";
 
+    /*
+     * Bot badges.
+     *
+     * Measured on real bots: Discord sends them as regular
+     * profile badges, so ONLY profile.badges is touched. A
+     * local `application` object is deliberately NOT built:
+     * a real one carries many more fields (name, verified,
+     * flags_new, integration_types_config...) and an
+     * incomplete one crashes the profile rendering.
+     *
+     * A bot shows only its application badges, so the user
+     * ones are dropped here.
+     */
+    if (
+        settings.store
+            .botSpoofEnabled ===
+        true
+    ) {
+        patches.badges =
+            getBotBadges(
+                settings.store
+                    .selectedBotBadges ??
+                []
+            ) as UserProfile["badges"];
+    }
+
+    /*
+     * A bot has no Nitro: the native badge and premium
+     * fields are skipped while "Show As Bot" is on.
+     */
     if (
         nitroTier !==
-        "none"
+        "none" &&
+        settings.store
+            .botSpoofEnabled !==
+        true
     ) {
         patches.premiumType =
             Math.max(

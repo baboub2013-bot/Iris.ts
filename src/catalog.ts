@@ -11,6 +11,13 @@ export interface BadgeEntry {
     name: string;
     iconHash: string;
     exclusiveGroup?: string;
+
+    /*
+     * Absolute image URL, used instead of the badge-icons
+     * CDN when Discord ships the badge that way (the Gifting
+     * Patron badge carries a simple_icon_url).
+     */
+    iconUrl?: string;
 }
 
 export interface DecorationEntry {
@@ -24,6 +31,12 @@ export interface TierEntry {
     id: string;
     name: string;
     iconHash: string;
+
+    /*
+     * Absolute image URL, used instead of the badge-icons
+     * CDN hash when the art is hosted elsewhere.
+     */
+    iconUrl?: string;
 }
 
 export interface CustomBadge {
@@ -36,6 +49,14 @@ export interface CustomBadge {
 
 export function badgeIcon(hash: string): string {
     return `https://cdn.discordapp.com/badge-icons/${hash}.png`;
+}
+
+/*
+ * Image of a badge entry: explicit URL first, CDN hash
+ * otherwise.
+ */
+export function badgeImage(badge: BadgeEntry): string {
+    return badge.iconUrl ?? badgeIcon(badge.iconHash);
 }
 
 export function decorationIcon(asset: string): string {
@@ -125,6 +146,116 @@ export const BADGES: BadgeEntry[] = [
     }
 ];
 
+export interface NativeBadge {
+    id: string;
+    description: string;
+    icon: string;
+    link?: string;
+}
+
+/*
+ * Bot-only badges.
+ *
+ * Measured on real bots (/users/<id>/profile): Discord sends
+ * them as regular profile badges, NOT from application.flags:
+ *
+ *   { id: "bot_commands",
+ *     description: "Supports Commands",
+ *     icon: "6f9e37f9029ff57aef81db857890005e",
+ *     link: "https://discord.com/blog/..." }
+ *
+ * They are therefore injected into profile.badges in that
+ * exact format, so Discord draws its own icon and tooltip.
+ *
+ * A bot never carries user badges (HypeSquad, Nitro, boosts,
+ * tiered badges), so those are hidden while "Show As Bot"
+ * is on.
+ *
+ * TO ADD A BADGE: add { id, name, iconHash, link } below.
+ * iconHash is the `icon` field of the badge on a real bot
+ * that owns it.
+ */
+export interface BotBadgeEntry {
+    id: string;
+    name: string;
+    iconHash: string;
+    link?: string;
+
+    /*
+     * Matching application flag, kept for the local
+     * application object (cosmetic, Discord draws the badge
+     * from the entry above).
+     */
+    flag?: number;
+}
+
+export const BOT_BADGES: BotBadgeEntry[] = [
+    {
+        id: "bot_commands",
+        name: "Supports Commands",
+        iconHash: "6f9e37f9029ff57aef81db857890005e",
+        link: "https://discord.com/blog/welcome-to-the-new-era-of-discord-apps?ref=badge",
+
+        /*
+         * APPLICATION_COMMAND_BADGE, bit 23.
+         */
+        flag: 8388608
+    },
+    {
+        id: "automod",
+        name: "Uses AutoMod",
+        iconHash: "f2459b691ac7453ed6039bbcfaccbfcd",
+
+        /*
+         * No link on this one (measured on a bot that owns it).
+         * APPLICATION_AUTO_MODERATION_RULE_CREATE_BADGE, bit 6.
+         */
+        flag: 64
+    }
+];
+
+/*
+ * Native badge objects for the selected bot badges, in the
+ * exact shape Discord sends in profile.badges.
+ */
+export function getBotBadges(
+    selectedIds: string[]
+): NativeBadge[] {
+    const result: NativeBadge[] = [];
+
+    for (const badge of BOT_BADGES) {
+        if (!selectedIds.includes(badge.id)) {
+            continue;
+        }
+
+        result.push({
+            id: badge.id,
+            description: badge.name,
+            icon: badge.iconHash,
+            link: badge.link
+        });
+    }
+
+    return result;
+}
+
+/*
+ * Combined application.flags for the selected bot badges.
+ */
+export function getBotBadgeFlags(
+    selectedIds: string[]
+): number {
+    let flags = 0;
+
+    for (const badge of BOT_BADGES) {
+        if (selectedIds.includes(badge.id) && badge.flag) {
+            flags |= badge.flag;
+        }
+    }
+
+    return flags;
+}
+
 export const NITRO_TIERS: TierEntry[] = [
     { id: "none", name: "None", iconHash: "" },
     { id: "nitro", name: "Nitro", iconHash: "2ba85e8026a8614b640c2837bcdfe21b" },
@@ -152,11 +283,166 @@ export const NITRO_TIERS: TierEntry[] = [
  * art, date): the tier is read from profile.badges and the date
  * from Xb(), patched in index.ts (getNitroSinceHook).
  *
- * Simple mode (nitroSimpleTooltip): "iris_" prefix,
+ * Simple mode (nitroSimpleTooltip): "profile_spoofer_" prefix,
  * rendered as a regular badge with a plain tooltip. Fallback if
  * the native card ever stops working.
  */
-const SPOOFED_BADGE_PREFIX = "iris_";
+const SPOOFED_BADGE_PREFIX = "profile_spoofer_";
+/*
+ * =====================================================
+ * TIERED BADGE FAMILIES
+ * =====================================================
+ *
+ * Badges that level up (Gifting, Game Variety, Game Time,
+ * Streaming, Account Age...). Each family shows ONE tier at
+ * a time and gets its own compact section in the settings.
+ *
+ * TO ADD OR EDIT A FAMILY: only touch the data below.
+ * Everything else (settings, section, badge rendering) is
+ * generated from it.
+ *
+ *   id      -> key stored in the settings, keep it stable
+ *   name    -> section title
+ *   label   -> badge tooltip prefix ("Gifting" -> "Gifting Patron")
+ *   tiers   -> always start with the "none" entry, then one
+ *              entry per tier: { id, name, iconHash }
+ *              (iconHash = the part before .png in
+ *              https://cdn.discordapp.com/badge-icons/<hash>.png)
+ */
+export interface BadgeFamily {
+    id: string;
+    name: string;
+    label: string;
+    tiers: TierEntry[];
+}
+
+const NO_TIER: TierEntry = { id: "none", name: "None", iconHash: "" };
+
+const BADGE_PNG_BASE =
+    "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/";
+
+export const BADGE_FAMILIES: BadgeFamily[] = [
+    {
+        id: "gifting",
+        name: "Gifting",
+        label: "Gifting",
+        tiers: [
+            NO_TIER,
+            { id: "patron", name: "Patron", iconHash: "ac305d1b9481f312ce4419e7f8296558" },
+            { id: "champion", name: "Champion", iconHash: "8b7792c4f65953d3ff564f23429cb79e" },
+            { id: "luminary", name: "Luminary", iconHash: "3119f5504b2cd09576a323908c7c3517" },
+            { id: "icon", name: "Icon", iconHash: "64f2413c9b9803661322aaad25826b62" },
+            { id: "hero", name: "Hero", iconHash: "77d65b1f210014a11eb1582ee06ab684" },
+            { id: "legend", name: "Legend", iconHash: "7fe346cfc5da1340087d8759a9e7a395" }
+        ]
+    },
+
+    {
+        id: "game_variety",
+        name: "Game Variety",
+        label: "Game Variety",
+        tiers: [
+            NO_TIER,
+            { id: "game_variety_sampler", name: "Sampler (2 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_sampler.png` },
+            { id: "game_variety_dabbler", name: "Dabbler (5 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_dabbler.png` },
+            { id: "game_variety_enthusiast", name: "Enthusiast (10 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_enthusiast.png` },
+            { id: "game_variety_ranger", name: "Ranger (15 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_ranger.png` },
+            { id: "game_variety_explorer", name: "Explorer (20 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_explorer.png` },
+            { id: "game_variety_adventurer", name: "Adventurer (30 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_adventurer.png` },
+            { id: "game_variety_voyager", name: "Voyager (40 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_voyager.png` },
+            { id: "game_variety_maverick", name: "Maverick (60 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_maverick.png` },
+            { id: "game_variety_polymath", name: "Polymath (80 Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_polymath.png` },
+            { id: "game_variety_universalist", name: "Universalist (100+ Games)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_variety_universalist.png` }
+        ]
+    },
+    {
+        id: "game_time",
+        name: "Game Time",
+        label: "Game Time",
+        tiers: [
+            NO_TIER,
+            { id: "game_time_casual", name: "Casual (1 Hour)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_casual.png` },
+            { id: "game_time_recreational", name: "Recreational (5 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_recreational.png` },
+            { id: "game_time_dedicated", name: "Dedicated (20 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_dedicated.png` },
+            { id: "game_time_committed", name: "Committed (75 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_committed.png` },
+            { id: "game_time_serious", name: "Serious (150 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_serious.png` },
+            { id: "game_time_devoted", name: "Devoted (300 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_devoted.png` },
+            { id: "game_time_seasoned", name: "Seasoned (500 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_seasoned.png` },
+            { id: "game_time_ironclad", name: "Ironclad (1,000 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_ironclad.png` },
+            { id: "game_time_unshakeable", name: "Unshakeable (2,000 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_unshakeable.png` },
+            { id: "game_time_eternal", name: "Eternal (5,000+ Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}game_time_eternal.png` }
+        ]
+    },
+    {
+        id: "streaming",
+        name: "Streaming",
+        label: "Streaming",
+        tiers: [
+            NO_TIER,
+            { id: "streaming_newcomer", name: "Newcomer (1 Hour)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_newcomer.png` },
+            { id: "streaming_fledgling", name: "Fledgling (5 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_fledgling.png` },
+            { id: "streaming_breakout", name: "Breakout (20 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_breakout.png` },
+            { id: "streaming_standout", name: "Standout (75 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_standout.png` },
+            { id: "streaming_trendsetter", name: "Trendsetter (150 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_trendsetter.png` },
+            { id: "streaming_headliner", name: "Headliner (300 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_headliner.png` },
+            { id: "streaming_star", name: "Star (500 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_star.png` },
+            { id: "streaming_sensation", name: "Sensation (1,000 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_sensation.png` },
+            { id: "streaming_visionary", name: "Visionary (2,000 Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_visionary.png` },
+            { id: "streaming_phenomenon", name: "Phenomenon (5,000+ Hours)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}streaming_phenomenon.png` }
+        ]
+    },
+    {
+        id: "account_age",
+        name: "Account Age",
+        label: "Account Age",
+        tiers: [
+            NO_TIER,
+            { id: "account_age_seed", name: "Seed (1 Year)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_seed.png` },
+            { id: "account_age_sprout", name: "Sprout (2 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_sprout.png` },
+            { id: "account_age_bud", name: "Bud (3 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_bud.png` },
+            { id: "account_age_sapling", name: "Sapling (4 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_sapling.png` },
+            { id: "account_age_blossom", name: "Blossom (5 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_blossom.png` },
+            { id: "account_age_redwood", name: "Redwood (6 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_redwood.png` },
+            { id: "account_age_sequoia", name: "Sequoia (7 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_sequoia.png` },
+            { id: "account_age_bristlecone", name: "Bristlecone (8 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_bristlecone.png` },
+            { id: "account_age_stromatolite", name: "Stromatolite (9 Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_stromatolite.png` },
+            { id: "account_age_primordial", name: "Primordial (10+ Years)", iconHash: "", iconUrl: `${BADGE_PNG_BASE}account_age_primordial.png` }
+        ]
+    }
+];
+
+/*
+ * Icon of a tier: settings override first (for a tier
+ * Discord ships before this catalog does), CDN hash
+ * otherwise.
+ */
+export function tierIcon(
+    tier: TierEntry,
+    overrideUrl?: string
+): string {
+    const override = overrideUrl?.trim();
+
+    if (override) {
+        return override;
+    }
+
+    return tier.iconUrl ?? badgeIcon(tier.iconHash);
+}
+
+/*
+ * A tier can be displayed if it has any art at all.
+ */
+export function hasTierIcon(
+    tier: TierEntry,
+    overrideUrl?: string
+): boolean {
+    return !!(
+        overrideUrl?.trim() ||
+        tier.iconUrl ||
+        tier.iconHash
+    );
+}
+
 export interface NitroTenureEntry {
     months: number;
     badgeId: string;
@@ -174,12 +460,6 @@ export const NITRO_TENURE: Record<string, NitroTenureEntry> = {
     opal: { months: 72, badgeId: "premium_tenure_72_month_v2" }
 };
 
-export interface NativeBadge {
-    id: string;
-    description: string;
-    icon: string;
-    link?: string;
-}
 
 /*
  * Parses a user-entered date ("Sep 19, 2020", "2020-09-19",
