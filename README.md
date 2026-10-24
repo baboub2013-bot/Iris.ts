@@ -259,6 +259,12 @@ When reporting a bug, please include:
 
 Do not include Discord tokens, cookies, OAuth session tokens or other private credentials.
 
+## Transparency
+
+AI helped write, organize, and improve **all README files** in Iris.ts. I also use AI for debugging and troubleshooting, especially when dealing with Discord's complex internals and local profile customization through Vencord. I review and test proposed fixes myself.
+
+For details about AI assistance, disclosures, and responsibility, see **[transparency.md](./transparency.md)**.
+
 ## Disclaimer
 
 Iris.ts is not affiliated with Discord or Vencord.
