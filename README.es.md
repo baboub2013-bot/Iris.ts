@@ -257,6 +257,12 @@ Al reportar un bug, incluye si es posible:
 
 No incluyas tokens, cookies, sesiones OAuth ni otros datos sensibles.
 
+## Transparencia
+
+Se utilizó IA para redactar, organizar y mejorar **todos los archivos README** de Iris.ts. También la utilizo como ayuda para depurar problemas, especialmente al trabajar con los sistemas internos de Discord y la personalización local de perfiles mediante Vencord. Reviso y pruebo personalmente las correcciones propuestas.
+
+Para conocer más detalles sobre el uso de IA y los compromisos de transparencia, consulta **[transparency.md](./transparency.md)** (en inglés).
+
 ## Aviso
 
 Iris.ts no está afiliado con Discord ni con Vencord.
