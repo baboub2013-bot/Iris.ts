@@ -12,3 +12,9 @@ The desktop plugin in `../src/` targets Vencord and cannot run on mobile as-is. 
 - Unlock All-compatible local cosmetics
 - Tag spoofing with planned usability improvements
 - Shared catalog data with the desktop project where possible
+
+## Transparency
+
+AI helped write and improve the project's README files and troubleshoot the desktop Discord/Vencord plugin. **The mobile port is still planned**, so this does not mean a mobile implementation has been built or debugged.
+
+See the project's **[transparency.md](../transparency.md)** for details about AI assistance and disclosures.
